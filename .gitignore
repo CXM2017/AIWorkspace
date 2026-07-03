@@ -1,5 +1,24 @@
-﻿CxMVault/.obsidian/workspace.json
+# OS and editor noise
+.DS_Store
+Thumbs.db
+desktop.ini
+*.tmp
+*.temp
+*.bak
+*.swp
+*.swo
+~$*
+
+# Obsidian local UI state and installed plugin code
+CxMVault/.obsidian/workspace.json
 CxMVault/.obsidian/workspaces.json
 CxMVault/.obsidian/plugins/
+
+# Generated runtime artifacts
 CxMVault/logs/
 CxMVault/outputs/
+
+# Local scratch space
+.tmp/
+tmp/
+temp/

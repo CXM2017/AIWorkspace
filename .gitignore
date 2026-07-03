@@ -1,4 +1,4 @@
-# OS and editor noise
+# 系统和编辑器杂项
 .DS_Store
 Thumbs.db
 desktop.ini
@@ -9,16 +9,19 @@ desktop.ini
 *.swo
 ~$*
 
-# Obsidian local UI state and installed plugin code
+# Obsidian 本地界面状态和插件代码
 CxMVault/.obsidian/workspace.json
 CxMVault/.obsidian/workspaces.json
-CxMVault/.obsidian/plugins/
+CxMVault/.obsidian/plugins/*
+!CxMVault/.obsidian/plugins/obsidian-git/
+CxMVault/.obsidian/plugins/obsidian-git/*
+!CxMVault/.obsidian/plugins/obsidian-git/data.json
 
-# Generated runtime artifacts
+# 生成的运行产物
 CxMVault/logs/
 CxMVault/outputs/
 
-# Local scratch space
+# 本地临时目录
 .tmp/
 tmp/
 temp/

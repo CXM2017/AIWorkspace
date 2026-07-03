@@ -1,0 +1,86 @@
+{
+  "schemaVersion": "0.1.0",
+  "name": "CxMVault General Web Capture",
+  "behavior": "create",
+  "path": "raw/inbox/web",
+  "noteNameFormat": "{{date}}-{{domain}}-{{title}}",
+  "properties": [
+    {
+      "name": "type",
+      "value": "raw-source",
+      "type": "text"
+    },
+    {
+      "name": "status",
+      "value": "inbox",
+      "type": "text"
+    },
+    {
+      "name": "processing_status",
+      "value": "inbox",
+      "type": "text"
+    },
+    {
+      "name": "risk_level",
+      "value": "unreviewed",
+      "type": "text"
+    },
+    {
+      "name": "compile_decision",
+      "value": "unreviewed",
+      "type": "text"
+    },
+    {
+      "name": "title",
+      "value": "{{title}}",
+      "type": "text"
+    },
+    {
+      "name": "source_url",
+      "value": "{{url}}",
+      "type": "text"
+    },
+    {
+      "name": "source_site",
+      "value": "{{site}}",
+      "type": "text"
+    },
+    {
+      "name": "source_domain",
+      "value": "{{domain}}",
+      "type": "text"
+    },
+    {
+      "name": "author",
+      "value": "{{author}}",
+      "type": "text"
+    },
+    {
+      "name": "published",
+      "value": "{{published}}",
+      "type": "date"
+    },
+    {
+      "name": "created",
+      "value": "{{date}}",
+      "type": "date"
+    },
+    {
+      "name": "updated",
+      "value": "{{date}}",
+      "type": "date"
+    },
+    {
+      "name": "confidence",
+      "value": "EXTRACTED",
+      "type": "text"
+    },
+    {
+      "name": "tags",
+      "value": "clippings,inbox,web",
+      "type": "multitext"
+    }
+  ],
+  "triggers": [],
+  "noteContentFormat": "# {{title}}\n\n## Capture\n\n- URL: {{url}}\n- Site: {{site}}\n- Domain: {{domain}}\n- Author: {{author}}\n- Published: {{published}}\n- Clipped: {{date}}\n\n## Why Saved\n\n- \n\n## Triage\n\n- Processing status: inbox\n- Risk level: unreviewed\n- Compile decision: unreviewed\n- Suggested destination: wiki / review / archive / discard\n\n## Key Points\n\n- \n\n## Source Content\n\n{{content}}\n"
+}

@@ -1,0 +1,5 @@
+{
+  "folder": "reviews/daily",
+  "format": "YYYY-MM-DD",
+  "template": "templates/Daily Note.md"
+}

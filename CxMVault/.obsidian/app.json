@@ -1,0 +1,20 @@
+{
+  "showUnsupportedFiles": false,
+  "userIgnoreFilters": [
+    "/\\.qmd/",
+    "/\\.skills-data/",
+    "/\\.claude/",
+    "/\\.claudian/",
+    "/agentMemory/",
+    "/node_modules/",
+    "/\\.git/",
+    "/target/",
+    "/dist/",
+    "/build/",
+    "/coverage/",
+    "/\\.cache/",
+    "/\\.tmp/",
+    "/temp/",
+    "/logs/"
+  ]
+}

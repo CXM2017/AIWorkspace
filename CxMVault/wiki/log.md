@@ -2,7 +2,7 @@
 type: maintenance-log
 status: active
 created: 2026-07-02
-updated: 2026-07-02
+updated: 2026-07-03
 source_refs:
   - tools/Initialize-CxMVault.ps1
   - tools/Test-CxMVault.ps1
@@ -79,4 +79,11 @@ tags:
 - 自动化输出目录：`E:\AIWorkspace\CxMVault\outputs\automation\cxmvault-maintenance\`
 - 创建 daily、weekly、monthly 三个 Codex cron 自动化：`cxmvault`、`cxmvault-2`、`cxmvault-3`
 - 新增 `reviews/weekly/2026-W27.md` 和 `reviews/monthly/2026-07.md` 作为首轮自动化复盘落点
+
+## [2026-07-03] weekly-maintenance | 每周整理巡检
+
+- 运行 weekly runner：`D:\CodeX\.codex\automations\cxmvault-maintenance\scripts\run-cxmvault-maintenance.ps1`
+- 结果：`status=ok`，pending items 为 0，健康检查 `pass`
+- 更新 `reviews/weekly/2026-W27.md`，补充自动化巡检、重复主题提升判断和图谱检查结论
+- 未写入旧 `E:\CodeXData\CodeXKnowledge` 或 `E:\CodeXData\agentMemory`
 

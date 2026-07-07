@@ -8,9 +8,9 @@ source_refs:
 source_feed: "https://openai.com/news/rss.xml"
 source_name: "OpenAI News"
 published_at: "2026-06-24T06:00:00+00:00"
-processing_status: inbox
-risk_level: unreviewed
-compile_decision: unreviewed
+processing_status: archived
+risk_level: low
+compile_decision: reference-only
 confidence: UNVERIFIED
 tags:
   - ai

@@ -8,9 +8,9 @@ source_refs:
 source_feed: "https://news.ycombinator.com/rss"
 source_name: "Hacker News"
 published_at: "2026-07-06T16:47:44+00:00"
-processing_status: inbox
-risk_level: unreviewed
-compile_decision: unreviewed
+processing_status: compiled
+risk_level: low
+compile_decision: compile
 confidence: UNVERIFIED
 tags:
   - engineering

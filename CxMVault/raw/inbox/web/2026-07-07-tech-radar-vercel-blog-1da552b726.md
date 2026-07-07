@@ -8,9 +8,9 @@ source_refs:
 source_feed: "https://vercel.com/blog/rss.xml"
 source_name: "Vercel Blog"
 published_at: "2026-07-01T00:00:00+00:00"
-processing_status: inbox
-risk_level: unreviewed
-compile_decision: unreviewed
+processing_status: compiled
+risk_level: low
+compile_decision: compile
 confidence: UNVERIFIED
 tags:
   - ai-apps

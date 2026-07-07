@@ -9,9 +9,9 @@ source_feed: "https://api.github.com/search/repositories?q=topic%3Aobsidian-plug
 source_name: "GitHub Obsidian Plugins"
 source_type: "github-repository"
 published_at: "2026-07-06T23:03:18Z"
-processing_status: inbox
-risk_level: unreviewed
-compile_decision: unreviewed
+processing_status: compiled
+risk_level: low
+compile_decision: compile
 confidence: UNVERIFIED
 tags:
   - github

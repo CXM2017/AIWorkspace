@@ -8,9 +8,9 @@ source_refs:
 source_feed: "https://deepmind.google/blog/rss.xml"
 source_name: "Google DeepMind Blog"
 published_at: "2026-06-16T15:46:31+00:00"
-processing_status: inbox
-risk_level: unreviewed
-compile_decision: unreviewed
+processing_status: compiled
+risk_level: low
+compile_decision: compile
 confidence: UNVERIFIED
 tags:
   - ai

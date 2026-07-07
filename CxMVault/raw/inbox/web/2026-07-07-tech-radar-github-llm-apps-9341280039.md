@@ -9,9 +9,9 @@ source_feed: "https://api.github.com/search/repositories?q=topic%3Allm+pushed%3A
 source_name: "GitHub LLM Apps"
 source_type: "github-repository"
 published_at: "2026-07-06T23:22:11Z"
-processing_status: inbox
-risk_level: unreviewed
-compile_decision: unreviewed
+processing_status: compiled
+risk_level: low
+compile_decision: compile
 confidence: UNVERIFIED
 tags:
   - ai

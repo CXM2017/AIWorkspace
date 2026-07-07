@@ -8,9 +8,9 @@ source_refs:
 source_feed: "https://blog.cloudflare.com/rss/"
 source_name: "Cloudflare Blog"
 published_at: "2026-06-17T13:00:00+00:00"
-processing_status: inbox
-risk_level: unreviewed
-compile_decision: unreviewed
+processing_status: compiled
+risk_level: low
+compile_decision: compile
 confidence: UNVERIFIED
 tags:
   - cloud

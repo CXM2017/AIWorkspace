@@ -2,7 +2,7 @@
 type: wiki-index
 status: active
 created: 2026-07-02
-updated: 2026-07-02
+updated: 2026-07-07
 source_refs:
   - wiki/overview.md
 confidence: EXTRACTED
@@ -42,6 +42,7 @@ tags:
 - [[operations/采集消化复盘SOP|采集消化复盘 SOP]]
 - [[operations/WebClipper剪藏分诊SOP|Web Clipper 剪藏分诊 SOP]]
 - [[operations/自动化维护流程|自动化维护流程]]
+- [[operations/CxMVault链接关系体检|CxMVault 链接关系体检]]
 - [[operations/旧库迁移策略|旧库迁移策略]]
 - [[operations/Obsidian配置迁移|Obsidian 配置迁移]]
 - [[operations/知识维护闭环|知识维护闭环]]
@@ -66,4 +67,5 @@ tags:
 ## 领域知识
 
 - [[domains/Java现代后端进化路线|Java 现代后端进化路线]]
+- [[domains/AI Agent工程与工具生态雷达|AI Agent 工程与工具生态雷达]]
 

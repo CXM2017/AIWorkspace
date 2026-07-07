@@ -9,9 +9,9 @@ source_feed: "https://api.github.com/search/repositories?q=topic%3Adeveloper-too
 source_name: "GitHub Active Developer Tools / GitHub AI Agents / GitHub LLM Apps / GitHub MCP Projects / GitHub Codex Skills / GitHub Claude Code Skills"
 source_type: "github-repository"
 published_at: "2026-07-06T04:55:16Z"
-processing_status: inbox
-risk_level: unreviewed
-compile_decision: unreviewed
+processing_status: compiled
+risk_level: low
+compile_decision: compile
 confidence: UNVERIFIED
 tags:
   - agent

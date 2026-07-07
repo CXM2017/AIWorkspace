@@ -2,7 +2,7 @@
 type: maintenance-log
 status: active
 created: 2026-07-02
-updated: 2026-07-03
+updated: 2026-07-07
 source_refs:
   - tools/Initialize-CxMVault.ps1
   - tools/Test-CxMVault.ps1
@@ -86,4 +86,12 @@ tags:
 - 结果：`status=ok`，pending items 为 0，健康检查 `pass`
 - 更新 `reviews/weekly/2026-W27.md`，补充自动化巡检、重复主题提升判断和图谱检查结论
 - 未写入旧 `E:\CodeXData\CodeXKnowledge` 或 `E:\CodeXData\agentMemory`
+
+## [2026-07-07] tech-radar-ingest | 技术雷达消化
+
+- 消化 40 条 `raw/inbox/web/2026-07-07-tech-radar-*.md` 候选
+- 新增 [[domains/AI Agent工程与工具生态雷达|AI Agent 工程与工具生态雷达]]
+- 新增 [[operations/CxMVault链接关系体检|CxMVault 链接关系体检]]
+- 更新 [[operations/自动化维护流程|自动化维护流程]]、[[domains/Java现代后端进化路线|Java 现代后端进化路线]]、[[index|Wiki 索引]] 和 [[知识库图谱入口|知识库图谱入口]]
+- 将高价值 agent/MCP/Skills/Obsidian/Java-Spring 主题编译为领域观察，时效性强的云合作、芯片、模型预告和区域报告保留为 reference-only
 

@@ -8,9 +8,9 @@ source_refs:
 source_feed: "https://github.blog/feed/"
 source_name: "GitHub Blog"
 published_at: "2026-06-25T22:59:45+00:00"
-processing_status: inbox
-risk_level: unreviewed
-compile_decision: unreviewed
+processing_status: compiled
+risk_level: low
+compile_decision: compile
 confidence: UNVERIFIED
 tags:
   - devtools

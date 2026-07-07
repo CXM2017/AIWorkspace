@@ -9,9 +9,9 @@ source_feed: "https://api.github.com/search/repositories?q=topic%3Aspring-boot+p
 source_name: "GitHub Java Spring"
 source_type: "github-repository"
 published_at: "2026-07-07T00:39:53Z"
-processing_status: inbox
-risk_level: unreviewed
-compile_decision: unreviewed
+processing_status: compiled
+risk_level: low
+compile_decision: compile
 confidence: UNVERIFIED
 tags:
   - github

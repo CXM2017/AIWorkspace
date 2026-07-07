@@ -2,7 +2,7 @@
 type: domain-note
 status: active
 created: 2026-07-02
-updated: 2026-07-02
+updated: 2026-07-07
 source_refs:
   - raw/inbox/web/2026-07-02T135014+0800-51cto.com-2026 之后，Java 程序员还值钱吗？一份真正靠谱的进化路线图-51CTO.COM.md
   - https://openjdk.org/projects/jdk/25/
@@ -74,3 +74,8 @@ Java 后端的长期价值不在“会 Java 语法”，而在能用 Java 生态
 - Spring Boot 4.x 在当前项目栈中的真实升级成本
 - Java 25 对现有 RuoYi / Spring Cloud / Dubbo 项目的兼容边界
 - Spring AI 与现有项目认证、权限、日志和数据安全的集成方式
+
+## 相关链接
+
+- [[AI Agent工程与工具生态雷达|AI Agent 工程与工具生态雷达]]：观察 agent、MCP、开发工具和 Java/Spring 参考项目如何影响后端路线
+- [[../operations/采集消化复盘SOP|采集消化复盘 SOP]]：处理路线类文章和技术雷达素材的分诊标准

@@ -95,3 +95,24 @@ tags:
 - 更新 [[operations/自动化维护流程|自动化维护流程]]、[[domains/Java现代后端进化路线|Java 现代后端进化路线]]、[[index|Wiki 索引]] 和 [[知识库图谱入口|知识库图谱入口]]
 - 将高价值 agent/MCP/Skills/Obsidian/Java-Spring 主题编译为领域观察，时效性强的云合作、芯片、模型预告和区域报告保留为 reference-only
 
+## [2026-07-07] tech-radar-top10-email | 技术雷达 Top10 邮件报告
+
+- 扩展 Tech Radar 来源：Product Hunt、Hugging Face Blog、Simon Willison、Latent Space、本机 Codex Skills 和 Codex/Claude Code Skills GitHub 信号
+- 新增报告 runner：`D:\CodeX\.codex\automations\cxmvault-tech-radar\scripts\run-cxmvault-tech-radar-report.ps1`
+- 生成 HTML/Markdown 报告：`outputs/reports/tech-radar/2026-07-07/`
+- 报告策略调整为日常只发 Top10，完整候选池留在本地供复盘
+- 已通过 Gmail 发送到个人邮箱，Gmail message id：`19f3a2f7419044f6`
+
+## [2026-07-07] tech-radar-three-lists | 技术雷达三榜修正
+
+- 根据反馈修正报告结构：不再混成 Skills 总榜
+- 报告拆成“最新资讯/文章 Top10”“热门项目 Top10”“Skills Top10”
+- 修正项目榜分类逻辑：普通热门项目即使命中 skill 关键词，也不归入 Skills 榜
+- 已发送修正版 Gmail，Gmail message id：`19f3a3bc09a4753f`
+
+## [2026-07-07] tech-radar-hot-threshold | 技术雷达热点阈值
+
+- 调整为每榜最多 10 条，但只报达到热点阈值的内容；不足 10 条不硬凑
+- 三榜均无热点时 `should_send=false`，不发送邮件
+- 本机已经安装的 Skills 不再采集、不再上报，只保留外部 Codex/Claude Code Skills 信号
+

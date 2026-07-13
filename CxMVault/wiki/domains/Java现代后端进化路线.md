@@ -2,13 +2,15 @@
 type: domain-note
 status: active
 created: 2026-07-02
-updated: 2026-07-07
+updated: 2026-07-08
 source_refs:
   - raw/inbox/web/2026-07-02T135014+0800-51cto.com-2026 之后，Java 程序员还值钱吗？一份真正靠谱的进化路线图-51CTO.COM.md
   - https://openjdk.org/projects/jdk/25/
   - https://www.oracle.com/java/technologies/downloads/
   - https://docs.spring.io/spring-boot/reference/features/spring-application.html
   - https://junit.org/
+  - raw/inbox/web/2026-07-08-tech-radar-github-java-spring-ee097f0422.md
+  - raw/inbox/web/2026-07-08-tech-radar-github-java-spring-aac5fef1fc.md
 confidence: INFERRED
 tags:
   - java
@@ -61,6 +63,8 @@ Java 后端的长期价值不在“会 Java 语法”，而在能用 Java 生态
 ## 对当前个人知识库的意义
 
 这类文章适合沉淀为“路线图”和“学习计划”，不适合原样当权威事实。
+
+2026-07-08 的 GitHub Java/Spring 采集里，`apereo/cas` 比单纯后台模板更有长期参考价值：它代表身份认证、SSO、OIDC、MFA、LDAP 等企业认证复杂度。`vue-admin-better` 这类后台模板可作为 UI/脚手架参考，但不应替代项目内现有 RuoYi / Vue 规范。
 
 后续看到类似文章时，用这几个问题分诊：
 

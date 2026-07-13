@@ -2,7 +2,7 @@
 type: maintenance-log
 status: active
 created: 2026-07-02
-updated: 2026-07-07
+updated: 2026-07-10
 source_refs:
   - tools/Initialize-CxMVault.ps1
   - tools/Test-CxMVault.ps1
@@ -116,3 +116,39 @@ tags:
 - 三榜均无热点时 `should_send=false`，不发送邮件
 - 本机已经安装的 Skills 不再采集、不再上报，只保留外部 Codex/Claude Code Skills 信号
 
+## [2026-07-08] tech-radar-ingest | 技术雷达消化
+
+- 消化 40 条 `raw/inbox/web/2026-07-08-tech-radar-*.md` 候选
+- 更新 [[domains/AI Agent工程与工具生态雷达|AI Agent 工程与工具生态雷达]]：补充 agent 评测从静态榜单转向环境化、可审计过程和开发者学习成本的观察
+- 更新 [[domains/Java现代后端进化路线|Java 现代后端进化路线]]：将 `apereo/cas` 作为企业认证复杂度参考，后台模板仅保留脚手架参考
+- 31 条低风险内容标记为 `compiled`，6 条泛资源或背景内容标记为 `reference-only`，3 条信号异常或采用风险不清的项目进入周复盘
+- 安全工具编排相关内容只作为治理和能力边界参考，不编译成可执行攻击 SOP
+
+## [2026-07-09] tech-radar-ingest | 技术雷达消化
+
+- 消化 20 条 `raw/inbox/web/2026-07-09-tech-radar-*.md` 候选
+- 更新 [[domains/AI Agent工程与工具生态雷达|AI Agent 工程与工具生态雷达]]：补充 agent 记忆主动导航、review-revise 闭环、可观测性、漏洞诱导提交检测和开发者理解参与的观察
+- 15 条低风险高相关内容标记为 `compiled`，4 条泛资源或背景内容标记为 `reference-only`，1 条 Skills 市场信号进入周复盘
+- 未写入旧 `E:\CodeXData\CodeXKnowledge` 或 `E:\CodeXData\agentMemory`
+
+## [2026-07-10] codex-chrome-native-host | Codex Chrome 扩展修复沉淀
+
+- 新增 [[operations/Codex Chrome扩展NativeHost修复|Codex Chrome 扩展 Native Host 修复]]
+- 记录 Chrome 侧边栏 `codexCliPath` 缺失和 `native host v2 manifest is missing` 的快速排查路径
+- 关键结论：不要把整个 `C:\Users\CxM\AppData\Local\OpenAI\Codex` junction 到 `D:\CodeX\.codex`；应保持 `bin` 单独 junction，并修复 bundled 插件源、`latest` junction、标准 native host manifest 与 v2 manifest
+- 本次验证结果：Chrome 插件实际连接返回 `ok: true`
+
+## [2026-07-10] tech-radar-ingest | 技术雷达消化
+
+- 消化 20 条 `raw/inbox/web/2026-07-10-tech-radar-*.md` 候选
+- 更新 [[domains/AI Agent工程与工具生态雷达|AI Agent 工程与工具生态雷达]]：补充 agent 确定性门禁、技能治理、轨迹级评测、专业领域审计、MCP 安全边界和生产 workflow 固化的观察
+- 16 条内容标记为 `compiled`，3 条时效性或双用途内容标记为 `reference-only`，1 条 BYOK 设计工具进入周复盘
+- 双用途 PoC 与安全委派内容只保留防御性风险结论，未编译成可执行攻击或规避 SOP
+- 未写入旧 `E:\CodeXData\CodeXKnowledge` 或 `E:\CodeXData\agentMemory`
+
+## [2026-07-10] weekly-maintenance | 每周整理巡检
+
+- 运行 weekly runner：`D:\CodeX\.codex\automations\cxmvault-maintenance\scripts\run-cxmvault-maintenance.ps1`
+- 结果：`status=ok`，pending items 为 0，健康检查 `pass`
+- 新增 `reviews/weekly/2026-W28.md`，汇总本周 Tech Radar、Native Host runbook、重复主题提升判断和图谱检查结论
+- 未写入旧 `E:\CodeXData\CodeXKnowledge` 或 `E:\CodeXData\agentMemory`

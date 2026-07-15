@@ -9,10 +9,10 @@ source_feed: "https://openai.com/news/rss.xml"
 source_name: "OpenAI News"
 source_type: "web"
 published_at: "2026-07-08T13:00:00+00:00"
-processing_status: inbox
-risk_level: unreviewed
-compile_decision: unreviewed
-confidence: UNVERIFIED
+processing_status: compiled
+risk_level: low
+compile_decision: compile
+confidence: EXTRACTED
 tags:
   - ai
   - inbox

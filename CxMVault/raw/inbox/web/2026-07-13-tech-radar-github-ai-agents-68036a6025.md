@@ -9,10 +9,10 @@ source_feed: "https://api.github.com/search/repositories?q=topic%3Aai-agents+pus
 source_name: "GitHub AI Agents"
 source_type: "github-repository"
 published_at: "2026-06-16T13:30:12Z"
-processing_status: inbox
-risk_level: unreviewed
-compile_decision: unreviewed
-confidence: UNVERIFIED
+processing_status: review
+risk_level: medium
+compile_decision: weekly-review
+confidence: EXTRACTED
 tags:
   - agent
   - ai

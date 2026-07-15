@@ -9,10 +9,10 @@ source_feed: "https://api.github.com/search/repositories?q=created%3A%3E%3D2026-
 source_name: "GitHub Hot New Repositories"
 source_type: "github-repository"
 published_at: "2026-06-27T23:50:57Z"
-processing_status: inbox
-risk_level: unreviewed
-compile_decision: unreviewed
-confidence: UNVERIFIED
+processing_status: archived
+risk_level: high
+compile_decision: reference-only
+confidence: EXTRACTED
 tags:
   - github
   - hot

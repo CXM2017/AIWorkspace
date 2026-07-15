@@ -9,10 +9,10 @@ source_feed: "https://api.github.com/search/repositories?q=codex+skill+SKILL.md+
 source_name: "GitHub Codex Skills"
 source_type: "github-repository"
 published_at: "2026-07-12T08:54:54Z"
-processing_status: inbox
-risk_level: unreviewed
-compile_decision: unreviewed
-confidence: UNVERIFIED
+processing_status: archived
+risk_level: low
+compile_decision: reference-only
+confidence: EXTRACTED
 tags:
   - codex
   - github

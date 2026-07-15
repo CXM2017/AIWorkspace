@@ -9,10 +9,10 @@ source_feed: "https://github.blog/feed/"
 source_name: "GitHub Blog"
 source_type: "web"
 published_at: "2026-07-10T15:57:47+00:00"
-processing_status: inbox
-risk_level: unreviewed
-compile_decision: unreviewed
-confidence: UNVERIFIED
+processing_status: compiled
+risk_level: low
+compile_decision: compile
+confidence: EXTRACTED
 tags:
   - devtools
   - github

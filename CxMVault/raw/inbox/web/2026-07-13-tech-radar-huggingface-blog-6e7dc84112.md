@@ -9,10 +9,10 @@ source_feed: "https://huggingface.co/blog/feed.xml"
 source_name: "Hugging Face Blog"
 source_type: "web"
 published_at: "2026-07-08T17:16:05+00:00"
-processing_status: inbox
-risk_level: unreviewed
-compile_decision: unreviewed
-confidence: UNVERIFIED
+processing_status: compiled
+risk_level: low
+compile_decision: compile
+confidence: EXTRACTED
 tags:
   - ai
   - inbox

@@ -9,10 +9,10 @@ source_feed: "https://www.latent.space/feed"
 source_name: "Latent Space"
 source_type: "web"
 published_at: "2026-07-03T00:08:18+00:00"
-processing_status: inbox
-risk_level: unreviewed
-compile_decision: unreviewed
-confidence: UNVERIFIED
+processing_status: compiled
+risk_level: low
+compile_decision: compile
+confidence: EXTRACTED
 tags:
   - agent
   - ai

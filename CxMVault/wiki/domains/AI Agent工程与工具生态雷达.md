@@ -2,7 +2,7 @@
 type: domain-note
 status: active
 created: 2026-07-07
-updated: 2026-07-10
+updated: 2026-07-13
 source_refs:
   - raw/inbox/web/2026-07-07-tech-radar-cloudflare-blog-028c91dbc9.md
   - raw/inbox/web/2026-07-07-tech-radar-cloudflare-blog-1d2ace46a1.md
@@ -66,6 +66,18 @@ source_refs:
   - raw/inbox/web/2026-07-10-tech-radar-arxiv-cs-se-d20e73694c.md
   - raw/inbox/web/2026-07-10-tech-radar-arxiv-cs-se-f856914fba.md
   - raw/inbox/web/2026-07-10-tech-radar-simon-willison-f5ee8c4803.md
+  - raw/inbox/web/2026-07-13-tech-radar-github-blog-9be16aa317.md
+  - raw/inbox/web/2026-07-13-tech-radar-github-hot-new-c4ec444bf5.md
+  - raw/inbox/web/2026-07-13-tech-radar-hacker-news-d5d70d59f8.md
+  - raw/inbox/web/2026-07-13-tech-radar-huggingface-blog-6e7dc84112.md
+  - raw/inbox/web/2026-07-13-tech-radar-huggingface-blog-701b4d0fd5.md
+  - raw/inbox/web/2026-07-13-tech-radar-latent-space-c242e421e4.md
+  - raw/inbox/web/2026-07-13-tech-radar-latent-space-c486c1e6df.md
+  - raw/inbox/web/2026-07-13-tech-radar-latent-space-e292042540.md
+  - raw/inbox/web/2026-07-13-tech-radar-openai-news-d98becb80f.md
+  - raw/inbox/web/2026-07-13-tech-radar-product-hunt-c70e7dbaf0.md
+  - raw/inbox/web/2026-07-13-tech-radar-simon-willison-37b55b47e5.md
+  - raw/inbox/web/2026-07-13-tech-radar-simon-willison-c352e12048.md
 confidence: INFERRED
 tags:
   - ai
@@ -165,6 +177,19 @@ tags:
 - 模型发布信息应降级为观察信号：Simon Willison 对 GPT-5.6 family 的记录显示，模型厂商开始突出长任务 agentic benchmark、上下文窗口和工具调用；这类价格、规格和 benchmark 结论时效性强，采用前必须回到官方文档和本机实测
 
 本次保留但不编译的内容：`AnyPoC` 具有双用途 PoC 生成属性，仅作为 reference-only；`nexu-io/open-design` 星标异常高且是 BYOK 本地设计工具，进入周复盘观察；`Cowart` 和 Muse Spark 1.1 暂不进入本机工具链。
+
+### 2026-07-13：agent 工程继续收敛到“证据、评测、责任边界和运行成本”
+
+7 月 13 日的 tech-radar 候选显示，coding agent 和通用 agent 的成熟方向仍然不是单点模型能力，而是围绕真实开发证据、可复现评测、组织责任边界和运行成本形成工程闭环：
+
+- GitHub Copilot code review 的工具迁移案例说明，更强的底层工具可能先放大 agent 的错误路径；真正有效的是把探索工具、PR 证据和 review 工作流重新约束到可审计的路径上
+- OpenAI 对 coding evaluations 的分析、ScarfBench 的企业 Java 框架迁移评测，以及 Terry Tao 对现代 coding agents 的观察，都指向同一个判断：评测必须靠近真实任务、真实代码库和可复现轨迹，不能只看单一 benchmark 分数
+- Hugging Face / NVIDIA 的 agent 数据方向和 Latent Space 关于 Vercel、Modal、skill engineering 的讨论，都说明 agent 平台正在围绕数据、sandbox、skills、agent-readable websites 和 agent cloud 形成基础设施层
+- Simon Willison 记录的 Fable judgement 和 DRI 讨论适合转化为本地 agent 使用原则：允许模型在低风险工程动作上做判断，但项目责任、范围确认、风险接受和最终合并仍必须由人类承担
+- `JustVugg/colibri` 这类低内存大模型推理项目说明，模型运行成本和边缘推理仍是值得观察的方向；但在未验证许可证、模型来源和实际性能前，只作为技术信号，不进入本机工具链
+- `Sim` 这类开源 agent/workflow workspace 与 CxMVault 的 runner-first 自动化方向一致：可视化编排有价值，但长期稳定性仍取决于来源追溯、状态文件、验证脚本和失败可恢复性
+
+本次高风险或低确定性内容不编译为可执行流程：`elder-plinius/T3MP3ST` 是 offensive-security multi-agent harness，只保留防御性风险结论；`Yu9191/wloc` 涉及定位篡改和代理规则，只标记高风险 reference-only；`re4/LibreCode` 星标与 fork 比例异常且涉及逆向工具，进入周复盘观察；短视频自动生成、模型访问价格/额度新闻和小版本工具发布只保留 raw 参考。
 
 ## 采用分层
 

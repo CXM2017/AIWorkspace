@@ -9,10 +9,10 @@ source_feed: "https://simonwillison.net/atom/everything/"
 source_name: "Simon Willison"
 source_type: "web"
 published_at: "2026-07-06T23:57:35+00:00"
-processing_status: inbox
-risk_level: unreviewed
-compile_decision: unreviewed
-confidence: UNVERIFIED
+processing_status: archived
+risk_level: low
+compile_decision: reference-only
+confidence: EXTRACTED
 tags:
   - ai
   - devtools

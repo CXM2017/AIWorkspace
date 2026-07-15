@@ -152,3 +152,12 @@ tags:
 - 结果：`status=ok`，pending items 为 0，健康检查 `pass`
 - 新增 `reviews/weekly/2026-W28.md`，汇总本周 Tech Radar、Native Host runbook、重复主题提升判断和图谱检查结论
 - 未写入旧 `E:\CodeXData\CodeXKnowledge` 或 `E:\CodeXData\agentMemory`
+
+## [2026-07-13] tech-radar-ingest | 技术雷达消化
+
+- 消化 20 条 `raw/inbox/web/2026-07-13-tech-radar-*.md` 候选
+- 更新 [[domains/AI Agent工程与工具生态雷达|AI Agent 工程与工具生态雷达]]：补充 coding agent 证据链、真实评测、agent 平台基础设施、责任边界和运行成本观察
+- 新增 `reviews/daily/2026-07-13.md`，记录本次编译、reference-only、高风险和周复盘判断
+- 12 条内容标记为 `compiled`，7 条内容标记为 `reference-only`，1 条星标异常且涉及逆向工具边界的项目进入周复盘
+- offensive-security harness 和定位篡改工具只保留风险结论，未编译成可执行攻击、规避或篡改 SOP
+- 未写入旧 `E:\CodeXData\CodeXKnowledge` 或 `E:\CodeXData\agentMemory`

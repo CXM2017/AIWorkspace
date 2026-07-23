@@ -2,7 +2,7 @@
 type: maintenance-log
 status: active
 created: 2026-07-02
-updated: 2026-07-10
+updated: 2026-07-21
 source_refs:
   - tools/Initialize-CxMVault.ps1
   - tools/Test-CxMVault.ps1
@@ -13,6 +13,19 @@ tags:
 ---
 
 # 维护日志
+
+## [2026-07-21] crrc-vue-index-onboarding | CRRC_VUE_Index 项目初始化
+
+- 新增 [[projects/CRRC_VUE_Index|CRRC_VUE_Index]] 项目页，记录 Vue 前端结构、代理、认证与 CRRC_API 联调边界
+- 已初始化前端 CodeGraph：87 文件、1,881 节点、4,530 条关系；根 `.gitignore` 忽略 `.codegraph/`
+- 新增前端本地 `AGENTS.md`，将路由、API 封装、Pinia 状态、分页与后端契约收敛为可复用规则
+- 本地启动联调修正代理至 Admin `35698/crrc`，修复失效的 Element Plus 预发布依赖和缺失 terser；构建与浏览器访问均已通过
+
+## [2026-07-17] weekly-review | 2026-W29 周回顾
+
+- 新增 [[../reviews/weekly/2026-W29|2026-W29 周复盘]] 和 `reviews/daily/2026-07-17.md`
+- 汇总 Chrome Native Host 自动修复收敛、CRRC_API 项目接入和技术雷达消化；重复主题已链接到既有 runbook、项目页和领域页
+- 6 条 Skills / Skills 市场候选保留为 `review` / `weekly-review`，在完成来源、能力与安全评估前不安装、不编译为操作流程
 
 ## [2026-07-02] initialize | CxMVault 初始化
 
@@ -161,3 +174,46 @@ tags:
 - 12 条内容标记为 `compiled`，7 条内容标记为 `reference-only`，1 条星标异常且涉及逆向工具边界的项目进入周复盘
 - offensive-security harness 和定位篡改工具只保留风险结论，未编译成可执行攻击、规避或篡改 SOP
 - 未写入旧 `E:\CodeXData\CodeXKnowledge` 或 `E:\CodeXData\agentMemory`
+
+## [2026-07-16] codex-chrome-native-host-auto-repair | Codex Chrome 扩展永久化修复
+
+- 更新 [[operations/Codex Chrome扩展NativeHost修复|Codex Chrome 扩展 Native Host 修复]]
+- 新增固定修复入口：`D:\CodeX\maintenance\Repair-CodexChromeNativeHost.ps1`
+- 新增定时自愈注册入口：`D:\CodeX\maintenance\Register-CodexChromeNativeHostRepairTask.ps1`
+- 根因更新：桌面端从 2026-07-10 的 AppX 版本升级到 `OpenAI.Codex_26.707.9981.0_x64__2p2nqsd0c76g0` 后，v2 manifest 仍指向旧 AppX 版本和旧 runtime hash
+- 结论：后续不再手工写死 manifest 路径，改为脚本检测当前包版本、插件版本和 runtime hash 后自动重建 native host 配置
+
+## [2026-07-16] codex-chrome-native-host-manual-repair | 改为手动一键修复
+
+- 删除每 10 分钟运行的 `CodexChromeNativeHostRepair` 计划任务
+- 新增桌面入口：`C:\Users\CxM\Desktop\修复 ChatGPT Chrome 扩展.cmd`
+- `Register-CodexChromeNativeHostRepairTask.ps1` 改为可选的登录时一次检查；`-Mode Remove` 用于移除该任务
+- 默认策略：桌面端升级后仅在 Chrome 侧边栏报错时手动执行，避免无意义后台轮询
+
+## [2026-07-16] crrc-api-onboarding | CRRC_API 项目初始化
+
+- 新增 [[projects/CRRC_API|CRRC_API]] 项目页，记录模块边界、认证与数据访问链路、测试入口和安全边界
+- 已初始化 CodeGraph，索引 675 文件、15,316 节点、23,882 关系
+- 已建立本地 `AGENTS.md` 与项目说明，测试账号仅写入仓库外私有文件
+- agentMemory 使用 `agentmemory_crrc_api`，数据库 MCP `crrc_test_mysql` 已注册并由服务端强制只读 SQL
+
+## [2026-07-21] crrc-three-repo-governance | 中车三个仓库治理与动态字段改造复核
+
+- 更新 [[projects/CRRC_API|CRRC_API]] 与 [[projects/CRRC_VUE_Index|CRRC_VUE_Index]]，新增 [[projects/CRRC_VUE_admin|CRRC_VUE_admin]]
+- 记录门户、后台管理、Admin/Custom 本地联调入口以及三个仓库的动态字段改造边界
+- 确认 API agentMemory 与只读 MySQL MCP 可用；补充两个前端 agentMemory 的存储目录和 MCP 配置，待重启 Codex 后初始化验证
+- 将动态字段影响范围从列表展示扩展到详情、查询、导入导出、分析结果和算法输入
+
+## [2026-07-22] crrc-dynamic-dataset-backend | 中车动态数据集后端闭环
+
+- 更新 [[projects/CRRC_API|CRRC_API]]、[[projects/CRRC_VUE_admin|CRRC_VUE_admin]] 与 [[projects/CRRC_VUE_Index|CRRC_VUE_Index]] 的跨端契约
+- 后端完成动态CRUD、新表、字段归档删除、导入导出、分析和现有算法稳定字段映射；Base 61项测试及Admin、Custom打包通过
+- DDL审计使用独立事务并支持建表、删列的元数据失败恢复；相同操作编号禁止复用于不同请求
+- 只读数据库复核发现7个`creater`字段仍需补丁修正，当前有效算法映射为0；以上均列为前端联调和提测前置条件
+
+## [2026-07-23] sinopecnode-api-initialization | 中石化骨干节点后端初始化
+
+- 新增 [[projects/SinopecNode_api|SinopecNode_api]] 项目页并加入 Wiki 索引
+- 记录基于 `SteelTechnologyNode_api` 初始化后的 8 个运行服务、6 个数据库和 `sinopecnode-*` Nacos 命名
+- portal 已从 system 拆为独立服务，通过 Dubbo 契约访问用户与字典能力
+- portal 27 项测试和 Maven 58 模块全量打包通过；敏感配置字面量与旧项目标识残留审计均为 0

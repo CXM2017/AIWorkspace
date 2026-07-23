@@ -2,7 +2,7 @@
 type: wiki-index
 status: active
 created: 2026-07-02
-updated: 2026-07-13
+updated: 2026-07-21
 source_refs:
   - wiki/overview.md
 confidence: EXTRACTED
@@ -29,13 +29,18 @@ tags:
 - [[../reviews/monthly/README|每月整理]]
 - [[../reviews/weekly/2026-W27|2026-W27 周复盘]]
 - [[../reviews/weekly/2026-W28|2026-W28 周复盘]]
+- [[../reviews/weekly/2026-W29|2026-W29 周复盘]]
 - [[../reviews/monthly/2026-07|2026-07 月复盘]]
 
 ## 项目
 
 - [[projects/matdao_api|matdao_api]]
 - [[projects/SteelTechnologyNode_api|SteelTechnologyNode_api]]
+- [[projects/SinopecNode_api|SinopecNode_api]]
 - [[projects/MyExcel|MyExcel]]
+- [[projects/CRRC_API|CRRC_API]]
+- [[projects/CRRC_VUE_Index|CRRC_VUE_Index]]
+- [[projects/CRRC_VUE_admin|CRRC_VUE_admin]]
 - 其他旧项目先通过 [[../raw/legacy/agentmemory-index/index|agentMemory 旧项目记忆桥接]] 和 [[../raw/legacy/codexknowledge/index|CodeXKnowledge 旧库来源索引]] 进入
 
 ## 操作知识

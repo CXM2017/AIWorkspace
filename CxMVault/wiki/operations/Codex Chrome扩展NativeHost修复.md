@@ -2,11 +2,15 @@
 type: runbook
 status: active
 created: 2026-07-10
-updated: 2026-07-10
+updated: 2026-07-16
 source_refs:
   - D:\CodeX\conversations\chrome-extension-repair-20260710\repair.log
   - D:\CodeX\conversations\chrome-extension-repair-20260710\plugin-reinstall.log
   - D:\CodeX\backups\chrome-native-host-config-20260710-0912-after-vendor-fix
+  - D:\CodeX\maintenance\Repair-CodexChromeNativeHost.ps1
+  - D:\CodeX\maintenance\Register-CodexChromeNativeHostRepairTask.ps1
+  - C:\Users\CxM\Desktop\修复 ChatGPT Chrome 扩展.cmd
+  - D:\CodeX\logs\codex-chrome-native-host
 confidence: EXTRACTED
 tags:
   - codex
@@ -26,7 +30,46 @@ Chrome 侧边栏 ChatGPT 扩展报错：
 - `Codex Chrome native host v2 manifest is missing`
 - `The Chrome side panel could not connect to the ChatGPT desktop app`
 
-本次机器环境：Windows，ChatGPT/Codex Desktop 包版本 `OpenAI.Codex_26.707.3563.0_x64__2p2nqsd0c76g0`，Chrome 扩展 ID `hehggadaopoacecdllhhajmbjkdcmajg`。
+本次机器环境：Windows，ChatGPT/Codex Desktop 包版本会随商店自动更新漂移，Chrome 扩展 ID `hehggadaopoacecdllhhajmbjkdcmajg`。
+
+## 结论：优先使用永久化修复脚本
+
+不要再手工写死某个版本的 `codexCliPath`、`nodePath`、`nodeReplPath` 或 `resourcesPath`。桌面端自动更新后，`OpenAI.Codex_<version>`、运行时 hash 目录和 bundled Chrome 插件版本都会变化，一次性 manifest 会再次失效。
+
+当前机器的固定入口：
+
+```powershell
+pwsh.exe -NoProfile -ExecutionPolicy Bypass -File 'D:\CodeX\maintenance\Repair-CodexChromeNativeHost.ps1'
+```
+
+默认不启用高频轮询。出现报错时，双击桌面的 `修复 ChatGPT Chrome 扩展.cmd`；它会调用同一份修复脚本并保留窗口显示结果。
+
+若希望每次登录 Windows 自动检查一次（可选，而不是默认），才注册登录触发任务：
+
+```powershell
+pwsh.exe -NoProfile -ExecutionPolicy Bypass -File 'D:\CodeX\maintenance\Register-CodexChromeNativeHostRepairTask.ps1'
+schtasks.exe /Query /TN CodexChromeNativeHostRepair /FO LIST
+```
+
+取消登录触发任务：
+
+```powershell
+pwsh.exe -NoProfile -ExecutionPolicy Bypass -File 'D:\CodeX\maintenance\Register-CodexChromeNativeHostRepairTask.ps1' -Mode Remove
+```
+
+修复脚本会自动检测当前 AppX 包、当前 bundled Chrome 插件版本、当前 `D:\CodeX\runtimes\desktop-bin\<hash>\codex.exe`、当前 C 盘桌面端 node runtime，并在版本漂移或路径缺失时重建：
+
+- `D:\CodeX\.codex\vendor_imports\openai-bundled`
+- `D:\CodeX\.codex\plugins\cache\openai-bundled\chrome\latest`
+- `C:\Users\CxM\AppData\Local\OpenAI\extension\com.openai.codexextension.json`
+- `D:\CodeX\.codex\chrome-native-hosts-v2.json`
+- `C:\Users\CxM\AppData\Local\OpenAI\Codex\chrome-native-hosts-v2.json`
+
+日志位置：
+
+```text
+D:\CodeX\logs\codex-chrome-native-host\repair-YYYYMMDD.log
+```
 
 ## 快速判断
 
@@ -52,13 +95,15 @@ Get-Content 'D:\CodeX\.codex\vendor_imports\openai-bundled\plugins\chrome\.codex
 
 ## 根因
 
-本次根因是版本链断裂：
+2026-07-10 的根因是版本链断裂：
 
 - 桌面端已升级到 `26.707`
 - `D:\CodeX\.codex\vendor_imports\openai-bundled` 仍停在旧版 `26.602`
 - Chrome 插件缓存和 `latest` junction 未正确指向新版
 - v2 manifest 指向旧的 `codexCliPath`、`nodePath`、`resourcesPath`
 - 旧 hash 目录已不存在，导致侧边栏报 `codexCliPath` 缺失或 v2 manifest 缺失
+
+2026-07-16 复发的根因是同类问题：桌面端已升级到 `OpenAI.Codex_26.707.9981.0_x64__2p2nqsd0c76g0`，但 v2 manifest 仍指向 2026-07-10 的旧 AppX 版本和旧运行时 hash。永久修复不是再次手工改 JSON，而是让脚本在桌面端更新后按需重建 native host 配置。默认采取手动一键修复；不再使用每 10 分钟轮询。
 
 ## 修复流程
 
@@ -180,4 +225,3 @@ C:\Users\CxM\AppData\Local\OpenAI\Codex\chrome-native-hosts-v2.json
 - `D:\CodeX\backups\chrome-native-host-config-20260710-0912-after-vendor-fix`
 
 需要回滚时，先关闭 ChatGPT/Codex Desktop 和 `extension-host.exe`，再恢复对应文件。不要删除 `C:\Users\CxM\AppData\Local\OpenAI\Codex` 整个目录；其中有桌面端 runtime 与状态。
-

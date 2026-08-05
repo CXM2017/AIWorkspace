@@ -2,7 +2,7 @@
 type: wiki-index
 status: active
 created: 2026-07-02
-updated: 2026-07-21
+updated: 2026-07-29
 source_refs:
   - wiki/overview.md
 confidence: EXTRACTED
@@ -30,7 +30,16 @@ tags:
 - [[../reviews/weekly/2026-W27|2026-W27 周复盘]]
 - [[../reviews/weekly/2026-W28|2026-W28 周复盘]]
 - [[../reviews/weekly/2026-W29|2026-W29 周复盘]]
+- [[../reviews/weekly/2026-W30|2026-W30 周复盘]]
 - [[../reviews/monthly/2026-07|2026-07 月复盘]]
+
+## 治理入口
+
+- [项目注册表](../schema/projects.yaml)
+- [[../views/Project Registry.base|Project Registry]]
+- [[../views/Inbox Review.base|Inbox Review]]
+- [[../schema/AGENTS|Agent 契约]]
+- [[operations/知识维护闭环|知识维护闭环入口]]
 
 ## 项目
 
@@ -46,6 +55,7 @@ tags:
 ## 操作知识
 
 - [[operations/采集消化复盘SOP|采集消化复盘 SOP]]
+- [[operations/Codex工作台治理|Codex 工作台治理]]
 - [[operations/WebClipper剪藏分诊SOP|Web Clipper 剪藏分诊 SOP]]
 - [[operations/自动化维护流程|自动化维护流程]]
 - [[operations/CxMVault链接关系体检|CxMVault 链接关系体检]]

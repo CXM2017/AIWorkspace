@@ -2,12 +2,22 @@
 type: project
 status: active
 created: 2026-07-16
-updated: 2026-07-22
+updated: 2026-07-29
+project_id: CRRC_API
+project_lifecycle: active
+knowledge_tier: full
+config_source: unknown
+config_authority: verify-before-use
+agentmemory_status: verified
+codegraph_status: verified
+verification_status: verified
+last_verified: 2026-07-29
 source_refs:
   - E:\CodeXData\CRRC_API\CrrcgcMaterialGene\pom.xml
   - E:\CodeXData\CRRC_API\AGENTS.md
   - E:\CodeXData\CRRC_API\PROJECT_OVERVIEW.md
   - E:\CodeXData\CRRC_API\plans\2026-07-22-crrc-dynamic-dataset-backend-implementation.md
+  - E:\AIWorkspace\CxMVault\reviews\daily\2026-07-29.md
 confidence: EXTRACTED
 tags:
   - project
@@ -61,7 +71,7 @@ tags:
 - CodeGraph 已初始化：675 文件、15,316 节点、23,882 关系
 - agentMemory 配置为 `agentmemory_crrc_api`，存储目录 `E:\CodeXData\agentMemory\CRRC_API`
 - 数据库 MCP `crrc_test_mysql` 已注册，服务端只允许只读 SQL
-- 2026-07-21 已实测 `agentmemory_crrc_api` 返回 1 条架构记忆，`crrc_test_mysql` 的只读 `SELECT 1` 返回成功
+- 2026-07-29 已完成 `agentmemory_crrc_api` 路径规范化，并通过 JSON-RPC initialize 验证服务可用；此前只读数据库验证仍有效
 - 本地联调已验证门户 `5173`、后台管理 `5174`、Custom `33678`、Admin `35698` 均可访问；当前两个 Vue 代理都指向 Admin `35698/crrc`
 
 ## 复用入口

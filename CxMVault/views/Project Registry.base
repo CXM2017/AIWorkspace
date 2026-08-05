@@ -1,0 +1,53 @@
+filters:
+  and:
+    - 'file.ext == "md"'
+    - 'file.inFolder("wiki/projects")'
+    - 'type == "project"'
+
+properties:
+  file.name:
+    displayName: 项目
+  project_lifecycle:
+    displayName: 生命周期
+  knowledge_tier:
+    displayName: 知识层级
+  config_source:
+    displayName: 配置来源
+  config_authority:
+    displayName: 配置权威
+  agentmemory_status:
+    displayName: 记忆状态
+  codegraph_status:
+    displayName: CodeGraph
+  verification_status:
+    displayName: 验证状态
+  last_verified:
+    displayName: 最后验证
+
+views:
+  - type: table
+    name: Active
+    filters:
+      and:
+        - 'project_lifecycle == "active"'
+    order:
+      - file.name
+      - project_lifecycle
+      - knowledge_tier
+      - config_authority
+      - agentmemory_status
+      - codegraph_status
+      - verification_status
+      - last_verified
+
+  - type: table
+    name: Needs Review
+    filters:
+      or:
+        - 'verification_status != "verified"'
+        - 'knowledge_tier == "bridge"'
+    order:
+      - file.name
+      - verification_status
+      - knowledge_tier
+      - last_verified

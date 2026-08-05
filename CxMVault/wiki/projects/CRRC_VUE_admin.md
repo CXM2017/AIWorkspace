@@ -2,7 +2,16 @@
 type: project
 status: active
 created: 2026-07-21
-updated: 2026-07-22
+updated: 2026-07-29
+project_id: CRRC_VUE_admin
+project_lifecycle: active
+knowledge_tier: full
+config_source: repository
+config_authority: project-files
+agentmemory_status: verified
+codegraph_status: verified
+verification_status: verified
+last_verified: 2026-07-29
 source_refs:
   - E:\CodeXData\CRRC_VUE_admin\AGENTS.md
   - E:\CodeXData\CRRC_VUE_admin\crrcg-admin\package.json
@@ -11,6 +20,7 @@ source_refs:
   - E:\CodeXData\CRRC_VUE_admin\crrcg-admin\src\views\dataSetting\components\DataTable.vue
   - E:\CodeXData\CRRC_API\AGENTS.md
   - E:\CodeXData\CRRC_API\plans\2026-07-22-crrc-dynamic-dataset-backend-implementation.md
+  - E:\AIWorkspace\CxMVault\reviews\daily\2026-07-29.md
 confidence: EXTRACTED
 tags:
   - project
@@ -52,4 +62,4 @@ tags:
 ## 工具与复用入口
 
 - 本地治理规则：`E:\CodeXData\CRRC_VUE_admin\AGENTS.md`
-- agentMemory 目录和 MCP 配置已补为 `E:\CodeXData\agentMemory\CRRC_VUE_admin` / `agentmemory_crrc_vue_admin`；需重启 Codex 后初始化并验证工具出现
+- 2026-07-29 已完成路径规范化，并通过 JSON-RPC initialize 验证 `agentmemory_crrc_vue_admin` 可用

@@ -2,7 +2,16 @@
 type: project
 status: active
 created: 2026-07-21
-updated: 2026-07-22
+updated: 2026-07-29
+project_id: CRRC_VUE_Index
+project_lifecycle: active
+knowledge_tier: full
+config_source: repository
+config_authority: project-files
+agentmemory_status: verified
+codegraph_status: verified
+verification_status: verified
+last_verified: 2026-07-29
 source_refs:
   - E:\CodeXData\CRRC_VUE_Index\AGENTS.md
   - E:\CodeXData\CRRC_VUE_Index\ccrcg-index\package.json
@@ -11,6 +20,7 @@ source_refs:
   - E:\CodeXData\CRRC_API\AGENTS.md
   - E:\CodeXData\CRRC_API\CrrcgcMaterialGene\CrrcgcMaterialGene-base\src\main\java\com\atsteel\controller\LoginController.java
   - E:\CodeXData\CRRC_API\plans\2026-07-22-crrc-dynamic-dataset-backend-implementation.md
+  - E:\AIWorkspace\CxMVault\reviews\daily\2026-07-29.md
 confidence: EXTRACTED
 tags:
   - project
@@ -70,4 +80,4 @@ tags:
 - 原锁文件引用已失效的 Element Plus 预发布 URL；已改为同版本 `2.10.1` 的 npm 官方发布包，并补齐 Vite 配置所需的 `terser 5.49.0`
 - `npm ci` 与 `npm run build` 均通过；真实浏览器经本机 Vite 访问材料数据库页并加载用户、数据集和材料列表，`/api/captcha` 返回 `200 image/jpeg`
 - 2026-07-21 当前进程验证：门户实际监听 `127.0.0.1:5173`，通过 CLI `--host 127.0.0.1` 覆盖 Vite 文件中的固定 host，代理指向 Admin `35698/crrc`
-- agentMemory 目录和 MCP 配置已补为 `E:\CodeXData\agentMemory\CRRC_VUE_Index` / `agentmemory_crrc_vue_index`；需重启 Codex 后初始化并验证工具出现
+- 2026-07-29 已完成路径规范化，并通过 JSON-RPC initialize 验证 `agentmemory_crrc_vue_index` 可用

@@ -2,7 +2,7 @@
 type: maintenance-log
 status: active
 created: 2026-07-02
-updated: 2026-07-21
+updated: 2026-07-29
 source_refs:
   - tools/Initialize-CxMVault.ps1
   - tools/Test-CxMVault.ps1
@@ -13,6 +13,34 @@ tags:
 ---
 
 # 维护日志
+
+## [2026-07-29] agentmemory-mcp-path-normalization | 项目记忆 MCP 路径统一
+
+- 以 `agentmemory_steeltechnologynode_api` 的已验证配置为基线，统一 16 个 MCP 的项目存储根、进程临时目录和 npm 缓存目录
+- 修复 CRRC_API、CRRC_VUE_Index、CRRC_VUE_admin 与 SinopecNode_api 的环境变量偏差；配置修改前已备份 `D:\CodeX\.codex\config.toml` 并校验备份一致性
+- 对全部服务执行配置审计与 JSON-RPC `initialize` 握手，结果为 16/16 通过；未写入凭据、验证码或 Token
+
+## [2026-07-29] sinopecnode-portal-runbook-refresh | 门户路由与登录验证防回归
+
+- 更新 [[projects/SinopecNode_api|SinopecNode_api]]，将已失效的 `/system/news/**` Runbook 路由替换为当前 `/portal/**`、`/portal/admin/**` 与公开文件路径
+- 新增 [[../reviews/daily/2026-07-29|2026-07-29 日记录]]，固定本地登录页入口、无凭据检查与登录后受保护接口回归顺序
+- 注册 `agentmemory_sinopecnode_api` 并写入首条门户回归 Runbook；当前会话未刷新时以 CxMVault 项目页为强制回退入口，并在根 AGENTS 约束启动前检索与路由变更后的同步更新
+- 未写入 Client ID、凭据、验证码、Token 或完整认证响应
+
+## [2026-07-28] sinopecnode-portal-news-regression | 门户资讯管理本地闭环
+
+- 更新 [[projects/SinopecNode_api|SinopecNode_api]]，新增从 SQL/Nacos/服务重启到功能验收的固定 Runbook
+- 新增 [[../reviews/daily/2026-07-28|2026-07-28 日记录]]
+- 记录 `portal_news` 未落库、网关路由、Redis 验证码、会话冻结、RepeatSubmit、封面浏览器缓存与统一业务码判断
+- 真实网关回归确认临时封面释放、草稿/发布/下架/删除与删除后文件不可读取全部通过
+- 未写入任何测试凭据、验证码、Token 或认证响应
+
+## [2026-07-24] weekly-review | 2026-W30 周回顾（截至本周四）
+
+- 新增 [[../reviews/weekly/2026-W30|2026-W30 周复盘]] 和 `reviews/daily/2026-07-24.md`
+- 汇总 CRRC 动态数据集后端闭环、三端契约与前端联调前置条件；明确后端完成不等于全链路业务闭环
+- 汇总 [[projects/SinopecNode_api|SinopecNode_api]] 的 portal 独立服务初始化、边界和构建基线
+- 既有 6 条 Skills / Skills 市场候选仍保持 `review` / `weekly-review`，未安装、未生成操作流程
 
 ## [2026-07-21] crrc-vue-index-onboarding | CRRC_VUE_Index 项目初始化
 
@@ -217,3 +245,13 @@ tags:
 - 记录基于 `SteelTechnologyNode_api` 初始化后的 8 个运行服务、6 个数据库和 `sinopecnode-*` Nacos 命名
 - portal 已从 system 拆为独立服务，通过 Dubbo 契约访问用户与字典能力
 - portal 27 项测试和 Maven 58 模块全量打包通过；敏感配置字面量与旧项目标识残留审计均为 0
+
+## [2026-07-29] codex-governance-registry | 项目、对话与知识治理收敛
+
+- 新增 `schema/projects.yaml`，统一登记 7 个当前项目的身份、路径、知识层级、agentMemory、CodeGraph、数据库 MCP 与配置权威
+- 新增 Project Registry 与 Inbox Review 两个 Obsidian Base；项目页镜像九个治理字段，由健康检查发现登记漂移
+- 将 SteelTechnologyNode_api 与 MyExcel 从旧库桥接页升级为事实化项目页，并为 MyExcel 增加工作区级 `AGENTS.md`
+- 将 Nacos 纳入一等治理：远端当前内容为运行事实源，仓库模板仅作定位和对照，snapshot 仅作恢复；默认只读，写入需单独授权、远端导出与回滚源
+- 新增 `project-bootstrap` 与 `project-doctor` Skill 暂存实现，用于新项目/新对话装载和项目能力漂移诊断
+- 关闭 CRRC 三个 agentMemory 的“待重启验证”旧状态，记录 2026-07-29 JSON-RPC initialize 已验证结果
+- 修正 Sinopec 门户旧规则强制新会话的问题：Registry 登记 `portal-login-test` 与 session-first 策略，补充最近层级 AGENTS 和 `sinopec-portal-regression` Skill

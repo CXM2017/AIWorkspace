@@ -1,0 +1,52 @@
+filters:
+  and:
+    - 'file.ext == "md"'
+    - 'file.inFolder("raw/inbox")'
+
+formulas:
+  overdue: 'if(review_due && review_due < today(), "overdue", "")'
+
+properties:
+  file.name:
+    displayName: 来源
+  processing_status:
+    displayName: 状态
+  compile_decision:
+    displayName: 编译决策
+  risk_level:
+    displayName: 风险
+  review_owner:
+    displayName: 负责人
+  review_due:
+    displayName: 复核日期
+  formula.overdue:
+    displayName: 逾期
+  updated:
+    displayName: 更新日期
+
+views:
+  - type: table
+    name: To Process
+    filters:
+      or:
+        - 'processing_status == "inbox"'
+        - 'processing_status == "unreviewed"'
+        - 'compile_decision == "unreviewed"'
+    order:
+      - file.name
+      - processing_status
+      - risk_level
+      - updated
+
+  - type: table
+    name: Weekly Review
+    filters:
+      or:
+        - 'processing_status == "review"'
+        - 'compile_decision == "weekly-review"'
+    order:
+      - file.name
+      - risk_level
+      - review_owner
+      - review_due
+      - formula.overdue

@@ -1,0 +1,216 @@
+schema_version: 1
+format: flat-project-registry-v1
+updated: 2026-07-29
+
+contract:
+  canonical_id: project_id
+  null_literal: null
+  required_fields:
+    - project_id
+    - display_name
+    - lifecycle
+    - project_kind
+    - repository_path
+    - wiki_page
+    - knowledge_tier
+    - config_source
+    - config_authority
+    - config_write_policy
+    - agentmemory_status
+    - codegraph_status
+    - verification_status
+  enums:
+    lifecycle: [active, maintenance, dormant, archived, legacy-only]
+    knowledge_tier: [full, bridge, registry-only]
+    config_source: [nacos, repository, local-files, none, unknown]
+    config_authority: [remote-current, project-files, local-artifacts, not-applicable, verify-before-use]
+    config_write_policy: [explicit-user-request-only, project-files-only, not-applicable]
+    capability_status: [verified, configured, available, missing, not-applicable, needs-review, unknown]
+    database_access: [read-only, controlled, none, unknown]
+    auth_workflow: [local-demo-first, external-login, not-applicable]
+    browser_session_policy: [reuse-existing-before-login, fresh-login, not-applicable]
+
+policies:
+  governance_source: nearest-project-agents
+  code_source: current-repository
+  durable_knowledge_source: cxmvault-project-page
+  reusable_memory_source: project-agentmemory
+  legacy_source: provenance-only
+  browser_auth: registered-test-harness-first
+  nacos:
+    authority: remote-current
+    rule: remote target namespace/group/dataId current content is the latest runtime configuration fact
+    repository_role: locator-bootstrap-reference-only
+    snapshot_role: recovery-only
+    payload_storage: forbidden
+    write_policy: explicit-user-request-only
+
+frontmatter_mirror:
+  - project_id
+  - project_lifecycle
+  - knowledge_tier
+  - config_source
+  - config_authority
+  - agentmemory_status
+  - codegraph_status
+  - verification_status
+  - last_verified
+
+projects:
+  - project_id: SinopecNode_api
+    display_name: SinopecNode_api
+    aliases: [sinopecnode_api]
+    lifecycle: active
+    project_kind: java-microservice
+    repository_path: 'E:\CodeXData\SinopecNode_api'
+    agents_path: 'E:\CodeXData\SinopecNode_api\AGENTS.md'
+    test_harness_path: 'E:\CodeXData\portal-login-test'
+    test_harness_url: 'http://127.0.0.1:5177'
+    auth_workflow: local-demo-first
+    browser_session_policy: reuse-existing-before-login
+    wiki_page: wiki/projects/SinopecNode_api.md
+    knowledge_tier: full
+    config_source: nacos
+    config_authority: remote-current
+    config_locator_ref: wiki/projects/SinopecNode_api.md
+    config_write_policy: explicit-user-request-only
+    agentmemory_service: agentmemory_sinopecnode_api
+    agentmemory_path: 'E:\CodeXData\agentMemory\SinopecNode_api'
+    agentmemory_status: verified
+    codegraph_status: unknown
+    database_mcp: sinopecnode_dev_mysql
+    database_access: controlled
+    verification_status: verified
+    last_verified: 2026-07-29
+
+  - project_id: SteelTechnologyNode_api
+    display_name: SteelTechnologyNode_api
+    aliases: [steelnode]
+    lifecycle: active
+    project_kind: java-microservice
+    repository_path: 'E:\CodeXData\SteelTechnologyNode_api'
+    agents_path: 'E:\CodeXData\SteelTechnologyNode_api\AGENTS.md'
+    wiki_page: wiki/projects/SteelTechnologyNode_api.md
+    knowledge_tier: full
+    config_source: nacos
+    config_authority: remote-current
+    config_locator_ref: wiki/projects/SteelTechnologyNode_api.md
+    config_write_policy: explicit-user-request-only
+    agentmemory_service: agentmemory_steeltechnologynode_api
+    agentmemory_path: 'E:\CodeXData\agentMemory\SteelTechnologyNode_api'
+    agentmemory_status: verified
+    codegraph_status: unknown
+    database_mcp: steelnode_dev_mysql
+    database_access: controlled
+    verification_status: verified
+    last_verified: 2026-07-29
+
+  - project_id: MyExcel
+    display_name: MyExcel
+    aliases: []
+    lifecycle: active
+    project_kind: spreadsheet-workspace
+    repository_path: 'E:\CodeXData\MyExcel'
+    agents_path: 'E:\CodeXData\MyExcel\AGENTS.md'
+    wiki_page: wiki/projects/MyExcel.md
+    knowledge_tier: full
+    config_source: local-files
+    config_authority: project-files
+    config_locator_ref: wiki/projects/MyExcel.md
+    config_write_policy: project-files-only
+    agentmemory_service: null
+    agentmemory_path: 'E:\CodeXData\agentMemory\MyExcel'
+    agentmemory_status: available
+    codegraph_status: not-applicable
+    database_mcp: null
+    database_access: none
+    verification_status: verified
+    last_verified: 2026-07-29
+
+  - project_id: CRRC_API
+    display_name: CRRC_API
+    aliases: []
+    lifecycle: active
+    project_kind: java-backend
+    repository_path: 'E:\CodeXData\CRRC_API'
+    agents_path: 'E:\CodeXData\CRRC_API\AGENTS.md'
+    wiki_page: wiki/projects/CRRC_API.md
+    knowledge_tier: full
+    config_source: unknown
+    config_authority: verify-before-use
+    config_locator_ref: null
+    config_write_policy: explicit-user-request-only
+    agentmemory_service: agentmemory_crrc_api
+    agentmemory_path: 'E:\CodeXData\agentMemory\CRRC_API'
+    agentmemory_status: verified
+    codegraph_status: verified
+    database_mcp: crrc_test_mysql
+    database_access: read-only
+    verification_status: verified
+    last_verified: 2026-07-29
+
+  - project_id: CRRC_VUE_Index
+    display_name: CRRC_VUE_Index
+    aliases: []
+    lifecycle: active
+    project_kind: vue-frontend
+    repository_path: 'E:\CodeXData\CRRC_VUE_Index'
+    agents_path: 'E:\CodeXData\CRRC_VUE_Index\AGENTS.md'
+    wiki_page: wiki/projects/CRRC_VUE_Index.md
+    knowledge_tier: full
+    config_source: repository
+    config_authority: project-files
+    config_locator_ref: null
+    config_write_policy: project-files-only
+    agentmemory_service: agentmemory_crrc_vue_index
+    agentmemory_path: 'E:\CodeXData\agentMemory\CRRC_VUE_Index'
+    agentmemory_status: verified
+    codegraph_status: verified
+    database_mcp: null
+    database_access: none
+    verification_status: verified
+    last_verified: 2026-07-29
+
+  - project_id: CRRC_VUE_admin
+    display_name: CRRC_VUE_admin
+    aliases: []
+    lifecycle: active
+    project_kind: vue-frontend
+    repository_path: 'E:\CodeXData\CRRC_VUE_admin'
+    agents_path: 'E:\CodeXData\CRRC_VUE_admin\AGENTS.md'
+    wiki_page: wiki/projects/CRRC_VUE_admin.md
+    knowledge_tier: full
+    config_source: repository
+    config_authority: project-files
+    config_locator_ref: null
+    config_write_policy: project-files-only
+    agentmemory_service: agentmemory_crrc_vue_admin
+    agentmemory_path: 'E:\CodeXData\agentMemory\CRRC_VUE_admin'
+    agentmemory_status: verified
+    codegraph_status: verified
+    database_mcp: null
+    database_access: none
+    verification_status: verified
+    last_verified: 2026-07-29
+
+  - project_id: matdao_api
+    display_name: matdao_api
+    aliases: []
+    lifecycle: active
+    project_kind: java-microservice
+    repository_path: 'E:\CodeXData\matdao_api'
+    agents_path: 'E:\CodeXData\matdao_api\AGENTS.md'
+    wiki_page: wiki/projects/matdao_api.md
+    knowledge_tier: bridge
+    config_source: nacos
+    config_authority: remote-current
+    config_locator_ref: wiki/projects/matdao_api.md
+    config_write_policy: explicit-user-request-only
+    agentmemory_service: agentmemory_matdao_api
+    agentmemory_path: 'E:\CodeXData\agentMemory\matdao_api'
+    agentmemory_status: configured
+    codegraph_status: unknown
+    database_mcp: null
+    database_access: unknown
+    verification_status: needs-review
+    last_verified: null

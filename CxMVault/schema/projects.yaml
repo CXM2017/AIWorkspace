@@ -81,7 +81,7 @@ projects:
     database_mcp: sinopecnode_dev_mysql
     database_access: controlled
     verification_status: verified
-    last_verified: 2026-07-29
+    last_verified: 2026-08-06
 
   - project_id: SteelTechnologyNode_api
     display_name: SteelTechnologyNode_api

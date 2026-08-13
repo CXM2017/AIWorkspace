@@ -2,7 +2,7 @@
 type: maintenance-log
 status: active
 created: 2026-07-02
-updated: 2026-07-29
+updated: 2026-08-13
 source_refs:
   - tools/Initialize-CxMVault.ps1
   - tools/Test-CxMVault.ps1
@@ -255,3 +255,26 @@ tags:
 - 新增 `project-bootstrap` 与 `project-doctor` Skill 暂存实现，用于新项目/新对话装载和项目能力漂移诊断
 - 关闭 CRRC 三个 agentMemory 的“待重启验证”旧状态，记录 2026-07-29 JSON-RPC initialize 已验证结果
 - 修正 Sinopec 门户旧规则强制新会话的问题：Registry 登记 `portal-login-test` 与 session-first 策略，补充最近层级 AGENTS 和 `sinopec-portal-regression` Skill
+
+## [2026-08-12] sinopecnode-portal-init-and-nacos-template-sync | 门户初始化与配置模板复盘
+
+- 更新 [[projects/SinopecNode_api|SinopecNode_api]]：将当前门户 10 张实体表、字典、系统参数和后台权限统一收敛到新环境初始化入口；用户确认已部署环境完成三项历史迁移后，已删除对应增量脚本并保留 Git 历史追溯
+- 只读核验 `sinopecnode-cloud.sys_menu` 的最新门户菜单父子关系；初始化脚本现按“登录权限 → 菜单管理 → 首页配置/数据产品/资讯管理/外部资源库”精确写入运行菜单树，同时保留现有系统父级下的后端权限菜单
+- 以 `dev / sinopecnode-dev / DEFAULT_GROUP` 对 Nacos 只读核验 datasource、门户图片存储和网关匿名静态资源路径；模板只同步非敏感结构与环境变量占位符，未进行 Nacos 发布
+- 固化关键配置“紧邻模板更新再读”的规则，避免远端在连续读取期间更新后将旧值写回仓库模板
+- 已写入 `agentmemory_sinopecnode_api`；CxMVault 健康检查通过，0 error
+
+## [2026-08-12] weekly-maintenance | 每周整理巡检
+
+- 运行 weekly runner：`D:\CodeX\.codex\automations\cxmvault-maintenance\scripts\run-cxmvault-maintenance.ps1 -Mode weekly`
+- 结果：`status=ok`，Daily pending 为 0，Review backlog 为 6，Overdue reviews 为 0，健康检查 `pass`
+- 更新 [[../reviews/weekly/2026-W33|2026-W33 周复盘]] 与 [[index|Wiki 索引]]；六条外部 Skills/Agent 市场候选继续保留至 2026-09-11 人工统一判定
+- 图谱入口与 `.obsidian/graph.json` 过滤仍突出 wiki 知识节点；不修改图谱配置
+- 未写入旧 `E:\CodeXData\CodeXKnowledge` 或 `E:\CodeXData\agentMemory`
+
+## [2026-08-13] codex-governance-and-graph-audit | 对话治理与图谱主干复核
+
+- 更新 [[operations/Codex工作台治理|Codex 工作台治理]]：归档前先沉淀长期结论，重复自动化归档副本仅在精确核验后可恢复回收，并固定易错操作的验证动作
+- 复核默认 Obsidian 图谱：`path:wiki/` 过滤、隐藏机器入口/附件/未解析节点的策略保持不变；补齐 7 个项目页和 2 个跨项目运行手册到 [[知识库图谱入口|知识库图谱入口]]，长期节点不再孤立
+- 更新 [[operations/CxMVault链接关系体检|CxMVault 链接关系体检]]，固定新项目页进入 Index 与图谱入口、仅按真实依赖建立项目互链的规则
+- 正式健康检查通过：0 error、0 warning；未修改 `.obsidian/graph.json`、旧 `CodeXKnowledge` 或项目 `agentMemory`

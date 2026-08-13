@@ -2,7 +2,7 @@
 type: web-capture
 status: active
 created: 2026-07-08
-updated: 2026-07-08
+updated: 2026-08-12
 source_refs:
   - "https://github.com/ultraworkers/claw-code"
 source_feed: "https://api.github.com/search/repositories?q=claude+code+skill+in%3Aname%2Cdescription%2Creadme+pushed%3A%3E%3D2026-04-09&sort=stars&order=desc&per_page=8"
@@ -12,6 +12,10 @@ published_at: "2026-06-26T16:17:10Z"
 processing_status: review
 risk_level: medium
 compile_decision: weekly-review
+review_owner: CxM
+review_due: 2026-09-11
+decision_reason: 外部仓库仅是市场信号，尚未完成来源安全、许可和当前项目适配评估，不安装也不编译为固定流程
+last_seen: 2026-08-12
 confidence: UNVERIFIED
 tags:
   - claude-code

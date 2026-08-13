@@ -2,7 +2,7 @@
 type: wiki-index
 status: active
 created: 2026-07-02
-updated: 2026-07-29
+updated: 2026-08-12
 source_refs:
   - wiki/overview.md
 confidence: EXTRACTED
@@ -31,6 +31,7 @@ tags:
 - [[../reviews/weekly/2026-W28|2026-W28 周复盘]]
 - [[../reviews/weekly/2026-W29|2026-W29 周复盘]]
 - [[../reviews/weekly/2026-W30|2026-W30 周复盘]]
+- [[../reviews/weekly/2026-W33|2026-W33 周复盘]]
 - [[../reviews/monthly/2026-07|2026-07 月复盘]]
 
 ## 治理入口

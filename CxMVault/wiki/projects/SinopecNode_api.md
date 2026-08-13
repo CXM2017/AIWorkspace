@@ -2,7 +2,7 @@
 type: project
 status: active
 created: 2026-07-23
-updated: 2026-07-29
+updated: 2026-08-12
 project_id: SinopecNode_api
 project_lifecycle: active
 knowledge_tier: full
@@ -11,13 +11,14 @@ config_authority: remote-current
 agentmemory_status: verified
 codegraph_status: unknown
 verification_status: verified
-last_verified: 2026-07-29
+last_verified: 2026-08-06
 source_refs:
   - E:\CodeXData\SinopecNode_api\AGENTS.md
   - E:\CodeXData\SinopecNode_api\pom.xml
   - E:\CodeXData\SinopecNode_api\gateway\src\main\resources\application.yml
   - E:\CodeXData\SinopecNode_api\modules\portal\src\main\resources\application.yml
   - E:\CodeXData\SinopecNode_api\script\config\nacos\DEFAULT_GROUP
+  - E:\CodeXData\SinopecNode_api\script\sql\sinopecnode-portal-feature-init.sql
   - E:\CodeXData\portal-login-test
   - E:\CodeXData\agentMemory\SinopecNode_api
 confidence: EXTRACTED
@@ -38,7 +39,7 @@ tags:
 
 - `sinopecnode-gateway`：当前本地联调端口 1047
 - `sinopecnode-auth`：认证中心，默认端口 32001
-- `sinopecnode-system`：系统管理，默认端口 32002
+- `sinopecnode-system`：系统管理，当前本地联调端口 32102（2026-08-10 已核验）
 - `sinopecnode-portal`：前台门户独立服务，当前本地联调端口 32103
 - `sinopecnode-resource`：资源服务，默认端口 32004
 - `sinopecnode-gen`：代码生成，默认端口 32005
@@ -66,6 +67,7 @@ Nacos 模板位于 `script/config/nacos/DEFAULT_GROUP/`，核心 dataId 统一�
 - `dev` 与 `local` 都声明为默认 profile，启动与诊断必须显式使用 `-P<profile>` 并记录解析出的 server、namespace、group、dataId；当前 dev/local 定位为 `localhost:30050 / sinopecnode-dev / DEFAULT_GROUP`
 - Gateway、Auth 读取 `sinopecnode-application-common.yml` 与服务 dataId；业务服务还读取 `sinopecnode-datasource.yml`。snapshot 中未出现某个 dataId 不能证明服务端不存在
 - 默认只读核对远端当前内容；发布、初始化或覆盖必须由用户对精确目标单独授权，且先导出现有内容、记录来源并准备回滚
+- 发布前必须读取远端元数据中的配置 `type`；写入请求显式携带该类型，写后立即回读元数据确认类型和脱敏内容摘要均未偏离。不能依据 `.yml` 后缀推断 Nacos 会保留 YAML 类型
 - 客户端恢复目录 `C:\Users\CxM\nacos\config\Config-fixed-sinopecnode-dev-localhost_30050_nacos\` 不属于常规清理范围，也不能冒充远端当前事实
 - 项目规则详见 `E:\CodeXData\SinopecNode_api\AGENTS.md` 的“Nacos 运行事实与配置安全”
 
@@ -100,13 +102,13 @@ MySQL 初始化顺序：
 - 仅支持草稿、已发布、即时发布与下架；已发布资讯必须下架后才可编辑或删除
 - 资讯编辑页的“发布资讯”统一调用 `POST /portal/admin/news/publish` 并提交完整表单：不传 `id` 时新增并发布，传入草稿 `id` 时编辑并发布；`PUT /portal/admin/news/{id}/publish` 仅用于列表页对未改内容的草稿执行快捷发布
 - 首页 Banner 与资讯封面均使用门户服务本地/服务器持久化目录，不使用 OSS；地址必须为上传接口返回的受管相对 URL。首页 Banner 仅读取一张图、不轮播、跳转链接可为空
-- 文件匿名读取分别为 `/portal/home/banner/file/**` 与 `/portal/news/cover/file/**`；临时上传、替换或删除后的物理文件仅在事务提交后回收
+- 文件匿名读取分别为 `/portal/home/banner/file/**` 与 `/portal/news/cover/file/**`；保存时替换或删除后的旧文件仅在事务提交后回收。上传后取消编辑或保存失败产生的孤儿图片由门户定时任务统一回收，前端不调用图片释放接口
 - 首页配置编辑页必须显式保存才立即生效；未保存退出继续展示上一已发布版本。行业动态可配置展示条数、按发布时间倒序，或从已发布资讯中人工勾选并按置顶权重排序
 
 ### 每次本地启动前的固定检查
 
 1. 代码、SQL 与 Nacos 配置必须同一版本；不要只同步 Nacos 或只执行 system 库脚本
-2. 新环境执行 `script/sql/sinopecnode-portal-feature-init.sql`；该脚本用于新功能初始化，已部署环境的数据迁移必须单独评审并交付可回滚脚本
+2. 新环境执行 `script/sql/sinopecnode-portal-feature-init.sql`；当前已部署环境已完成门户历史迁移。未来存量环境的数据迁移必须单独评审并交付可回滚脚本
 3. 初始化脚本会在 `sinopecnode-portal` 建立资讯、首页配置及关联表，并在 `sinopecnode-cloud` 写入字典和按钮权限；若新增或保存失败，先核对当前门户数据源和 SQL 版本，不要先改 Controller 或请求体
 4. 网关 Nacos 仅需包含 `/portal/**` 到 `sinopecnode-portal` 的显式转发，且服务发现自动路由必须关闭；门户 Nacos 将 `springdoc.api-docs.path` 设为 `/portal/v3/api-docs`。网关为该文档路径配置 `PreserveHostHeader`，只保留网关 Host、不重写路径也不传递人工前缀。门户首页配置、Banner、资讯封面、资讯详情和浏览量接口均必须登录，不加入匿名白名单。前端只使用 `/portal/**`，不使用 `/sinopecnode-portal/portal/**` 服务名别名
 5. 公共 Nacos 的 `xss.excludeUrls` 必须包含 `/portal/admin/news` 与 `/portal/admin/news/publish`，否则全局过滤器会删除富文本正文的 HTML 标签和行内样式；该例外只用于后台正文写入，标题和摘要继续由字段级 `@Xss` 校验
@@ -131,7 +133,7 @@ MySQL 初始化顺序：
 
 1. 无凭据读取 `/portal/home/config`、Banner 文件和 `/auth/code`，确认公共链路与验证码服务可用
 2. 先由本地登录页的“读取用户信息”验证并复用现有会话；只有会话无效/冻结时才由用户以后台 appCode 重新登录。随后验证 `/portal/admin/news/**` 的列表、详情、草稿、发布、下架与删除；编辑页新增发布和草稿编辑发布都只调用一次 `POST /portal/admin/news/publish`，已发布资讯必须先下架
-3. 上传临时封面后释放，确认封面不可读取；删除资讯后，以随机查询参数和 `cache: no-store` 读取封面。全局异常可能返回 HTTP 200 加业务码，必须按业务码而非仅 HTTP 状态判断“文件不存在”
+3. 上传临时封面后取消保存，确认前端不调用释放接口；通过降低临时图片保留期并等待任务执行，确认无引用文件被回收。删除资讯后，以随机查询参数和 `cache: no-store` 读取封面。全局异常可能返回 HTTP 200 加业务码，必须按业务码而非仅 HTTP 状态判断“文件不存在”
 4. 验证 `/portal/admin/home-config/**` 保存后立即生效：替换单张 Banner、主副标题、资讯展示数量和手动置顶关联；未保存退出不得影响 `/portal/home/config`
 5. 清理测试资讯、关联和临时文件，确认不留下业务记录或磁盘文件
 
@@ -144,6 +146,29 @@ MySQL 初始化顺序：
 - 2026-07-29 再次重复登录的直接原因是旧规则写成“获取新会话”，与 DemoTest 已持久化并可探测现有会话的实现冲突；现已改为同 origin、同 Chrome profile 下 session-first，并把入口、会话策略和专用回归 Skill 纳入机器可读路由
 - 上传、草稿、发布、下架、删除、封面回收、Banner 本地存储和首页配置保存均应以自动化单元测试覆盖；当前门户定向测试为 31 项通过，其中包含新增并发布、草稿编辑并发布及富文本正文保留分支
 
+## 2026-08-06 数据产品模块交付与配置发布复盘
+
+### 已确认的功能边界
+
+- 数据产品按租户隔离；后台新增、编辑、删除与前台列表、详情读取均使用当前租户上下文
+- 后台保存后前台直接读取同一持久化数据，不保留发布或缓存中间态；卡片不再展示使用次数
+- 卡片能力区块、产品亮点、富文本详情与应用场景均由后台配置；分类复用系统字典，不新增数据产品分类查询接口。网关对接路径为 `GET /system/dict/data/type/portal_data_product_category`
+- Banner、资讯封面和数据产品图片的独立上传接口均采用后端回收：保存提交后立即清理不再引用的旧图，取消编辑或保存失败的孤儿文件由 `SysPortalImageCleanupTask` 定时回收。任务跨租户查询三类业务记录，并按文件名比对引用，因此三类图片即使使用同一物理目录也不会因不同 URL 前缀误删
+- 定向 Maven 测试已通过 5 项；同源 DemoTest 端到端闭环已覆盖系统字典读取、上传、后台新增、前台卡片/详情即时可见、后台修改即时可见和删除后前台不可见，测试数据已清理
+
+### Nacos 配置类型事故与固定防线
+
+- 事故根因：此前通过 Nacos HTTP 接口发布公共配置时，只提交了内容而未显式携带、发布后也未核验配置 `type`，使原 YAML 条目被 Nacos 标记为 `TEXT`
+- 恢复事实：用户已恢复配置类型；2026-08-06 只读核验 `127.0.0.1:30050 / sinopecnode-dev / DEFAULT_GROUP / sinopecnode-application-common.yml` 的远端元数据为 `yaml`
+- 此后任何 Nacos 写入必须遵循：读取远端元数据类型 → 备份并比对脱敏摘要 → 用户确认精确目标 → 请求显式携带原类型 → 写后回读元数据与摘要。任一步不符即停止写入并从历史/备份恢复，禁止再以内容发布“试修”
+- 本次数据产品富文本例外仅涉及公共配置中后台保存路径；该变更需要在类型保护流程内发布，不可因本地 YAML 模板正确就跳过远端类型核验
+
+### 新对话执行顺序
+
+1. 先读取本项目页、项目 `AGENTS.md` 和 `sinopec-portal-regression` Skill，再读取远端 Nacos 当前元数据；不得根据旧聊天、模板或快照发布配置
+2. 先进行公共接口和端口检查；受保护回归只复用 `http://127.0.0.1:5177` 同 origin 的 DemoTest 会话，以“读取用户信息”判定会话，不重复索要登录或尝试导出 Token
+3. 网关路径按当前路由验证；系统字典从 `/system/dict/**` 进入，门户接口从 `/portal/**` 进入，禁止根据服务名或旧路由猜测
+
 ## 后续任务入口
 
 - 先读项目根 `README.md`
@@ -151,3 +176,25 @@ MySQL 初始化顺序：
 - system 和 portal 的边界分别见 `modules/system/AGENTS.md`、`modules/portal/AGENTS.md`
 - 门户环境变量与接口说明见 `docs/api/`
 - 门户登录、资讯和首页配置回归使用 `D:\CodeX\.codex\skills\sinopec-portal-regression\SKILL.md`
+
+## 2026-08-12 门户完整初始化脚本与 Nacos 模板同步复盘
+
+### 已整理交付
+
+- `script/sql/sinopecnode-portal-feature-init.sql` 是新环境唯一的门户功能初始化入口，按 `sinopecnode-databases.sql`、`sinopecnode-cloud.sql`、该脚本的顺序执行
+- 脚本覆盖 10 张当前门户实体表：资讯、首页配置与置顶关联、数据产品及其亮点/能力/条目/场景、外部资源及访问记录；同时幂等初始化资讯/数据产品/外部资源分类、外部资源 URL 检测白名单参数、资讯/首页/数据产品/外部资源后台菜单及按钮权限
+- 不写入资讯、数据产品或外部资源演示数据；用户已确认当前部署环境完成数据产品、外部资源与资讯公开字段迁移，三份对应增量脚本已从工作树删除并保留 Git 历史。未来有存量数据的升级迁移仍须单独评审，不以完整初始化脚本替代
+- 2026-08-12 从 `sinopecnode-cloud.sys_menu` 只读核验当前门户运行菜单树：`登录权限(2057732380823740418)` → `菜单管理(2081579208106786817)` → `首页配置(2081581007702278146)`、`数据产品(2081581280013271042)`、`资讯管理(2081581470262706178)`、`外部资源库(2081581657660014594)`；初始化脚本已按此树补齐父级、路由、组件与排序。数据产品/外部资源的后端权限菜单仍保持当前库中的系统菜单父级 `1`，首页与资讯按钮权限改挂到最新组件节点；本次只读核验未发现这五个运行菜单的角色菜单映射
+
+### Nacos 只读核验与模板结论
+
+- 读取定位：`dev / localhost:30050 / sinopecnode-dev / DEFAULT_GROUP`；远端读取全程只读，未发布、导入或覆盖任何 dataId
+- 2026-08-12 10:05:20 +08:00 对 `sinopecnode-datasource.yml` 进行了紧邻模板更新的认证直读核验，远端摘要 SHA-256 为 `2ea2fbbc5e7e937b16a6c4db1d614bac988eadeec3a0babac340bc117f5ff57f`
+- 核验的数据库目标为：`system-master` 和 `gen` 指向 `sinopecnode-cloud`，`portal-master` 指向 `sinopecnode-portal`，`job` 指向 `sinopecnode-job`，`workflow` 指向 `sinopecnode-workflow`；本地 datasource 模板与上述五项一致
+- 已将远端已验证的门户图片匿名读取规则同步到 gateway 模板，包括 Banner、资讯封面、数据产品图片和外部资源图标；门户模板补齐数据产品图片本地存储路径与访问前缀
+- 本地存在但本次远端未读到的 `sentinel-dashboard.yml`、`sinopecnode-gen.yml`、`sinopecnode-job.yml`、`sinopecnode-monitor.yml`、`sinopecnode-workflow.yml` 与 `snailjob-server.yml` 仅标记为未远端核验，保留作模板，不自动删除或发布
+
+### 固定防线
+
+- 远端配置可在连续读取期间更新。涉及数据归属、路由、认证、存储位置的关键项，在写回模板前必须再次进行紧邻写入的窄范围认证只读核验，并以最后一次成功读取为准
+- 模板只同步非敏感结构、键和环境变量占位符；不得将远端密码、Token、私钥、第三方凭据或完整敏感配置正文写入仓库、项目页或 agentMemory

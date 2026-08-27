@@ -1,9 +1,8 @@
 filters:
   and:
-    - 'file.ext == "md"'
-    - 'file.inFolder("wiki/projects")'
-    - 'type == "project"'
-
+    - file.ext == "md"
+    - file.inFolder("wiki/projects")
+    - type == "project"
 properties:
   file.name:
     displayName: 项目
@@ -23,13 +22,12 @@ properties:
     displayName: 验证状态
   last_verified:
     displayName: 最后验证
-
 views:
   - type: table
     name: Active
     filters:
       and:
-        - 'project_lifecycle == "active"'
+        - project_lifecycle == "active"
     order:
       - file.name
       - project_lifecycle
@@ -39,13 +37,12 @@ views:
       - codegraph_status
       - verification_status
       - last_verified
-
   - type: table
     name: Needs Review
     filters:
       or:
-        - 'verification_status != "verified"'
-        - 'knowledge_tier == "bridge"'
+        - verification_status != "verified"
+        - knowledge_tier == "bridge"
     order:
       - file.name
       - verification_status

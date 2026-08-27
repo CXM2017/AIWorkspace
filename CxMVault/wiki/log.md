@@ -278,3 +278,16 @@ tags:
 - 复核默认 Obsidian 图谱：`path:wiki/` 过滤、隐藏机器入口/附件/未解析节点的策略保持不变；补齐 7 个项目页和 2 个跨项目运行手册到 [[知识库图谱入口|知识库图谱入口]]，长期节点不再孤立
 - 更新 [[operations/CxMVault链接关系体检|CxMVault 链接关系体检]]，固定新项目页进入 Index 与图谱入口、仅按真实依赖建立项目互链的规则
 - 正式健康检查通过：0 error、0 warning；未修改 `.obsidian/graph.json`、旧 `CodeXKnowledge` 或项目 `agentMemory`
+
+## [2026-08-13] nacos-local-state-migration | Nacos C 盘状态迁移与防回归
+
+- 只读核验本机 Nacos 2.5.1 客户端：未设置 `JM.SNAPSHOT.PATH` 时以 Windows `user.home` 为基路径并追加 `nacos/config`，因此生成 `C:\Users\CxM\nacos`；该路径同时承载 Nacos server 的 `conf/data/logs`、命名缓存与多个项目的恢复 snapshot
+- 确认没有 Java 进程、目标 `D:\CodeX\AppData\nacos` 不存在后，将完整目录迁移：783 个文件、344,693,516 bytes；原 C 路径改为指向 D 路径的 Junction，文件数量和字节数读回一致
+- 更新全局 AGENTS、`CODEX_LAYOUT`、`config-center-startup` Skill、SinopecNode 项目规则与项目页：C 路径为兼容入口，不再作为 C 盘残留或可单独清理的 snapshot 处理
+- 其他候选保持只读：`Documents\Codex` 与 Codex Desktop `bin` 已是 D 盘 Junction；Desktop runtime 与近期更新的 `.cache\codex-runtimes` 保持原位，旧 `.m2` 与 `.codex\state` 未证明可安全迁移，未删除
+
+## [2026-08-13] maven-c-drive-repository-retirement | Maven C 盘旧仓库清理
+
+- 用户确认当前 Maven 依赖统一使用 `E:\repository-common`；只读确认 `C:\Users\CxM\.m2` 仅含 `repository/`、无 `settings.xml` 或其他配置，且没有 Java/Maven 进程
+- 永久删除精确目录 `C:\Users\CxM\.m2`：3,516 个文件、109,309,265 bytes；删除后路径不存在
+- 更新全局 AGENTS 与 `CODEX_LAYOUT`：未来 Maven 命令必须显式传入 `-Dmaven.repo.local=E:/repository-common`，除非更近项目规则指定其他非 C 盘仓库

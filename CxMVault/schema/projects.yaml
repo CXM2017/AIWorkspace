@@ -61,7 +61,7 @@ projects:
     display_name: SinopecNode_api
     aliases: [sinopecnode_api]
     lifecycle: active
-    project_kind: java-microservice
+    project_kind: java-backend
     repository_path: 'E:\CodeXData\SinopecNode_api'
     agents_path: 'E:\CodeXData\SinopecNode_api\AGENTS.md'
     test_harness_path: 'E:\CodeXData\portal-login-test'
@@ -70,10 +70,10 @@ projects:
     browser_session_policy: reuse-existing-before-login
     wiki_page: wiki/projects/SinopecNode_api.md
     knowledge_tier: full
-    config_source: nacos
-    config_authority: remote-current
-    config_locator_ref: wiki/projects/SinopecNode_api.md
-    config_write_policy: explicit-user-request-only
+    config_source: repository
+    config_authority: project-files
+    config_locator_ref: sinopecnode-monolith/src/main/resources/application.yml
+    config_write_policy: project-files-only
     agentmemory_service: agentmemory_sinopecnode_api
     agentmemory_path: 'E:\CodeXData\agentMemory\SinopecNode_api'
     agentmemory_status: verified
@@ -81,7 +81,7 @@ projects:
     database_mcp: sinopecnode_dev_mysql
     database_access: controlled
     verification_status: verified
-    last_verified: 2026-08-06
+    last_verified: 2026-08-19
 
   - project_id: SteelTechnologyNode_api
     display_name: SteelTechnologyNode_api

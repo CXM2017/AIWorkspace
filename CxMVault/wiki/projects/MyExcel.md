@@ -2,15 +2,16 @@
 type: project
 status: active
 created: 2026-07-02
-updated: 2026-07-29
+updated: 2026-10-16
 project_id: MyExcel
 project_lifecycle: active
 knowledge_tier: full
 config_source: local-files
 config_authority: project-files
-agentmemory_status: available
+agentmemory_status: verified
 codegraph_status: not-applicable
 verification_status: verified
+last_capability_review: 2026-09-08
 last_verified: 2026-07-29
 source_refs:
   - E:\CodeXData\MyExcel\AGENTS.md
@@ -56,6 +57,11 @@ tags:
 - 发票、报价、客户、合同和业务附件视为敏感业务数据；CxMVault 与记忆只保存可复用规则、字段映射方法、稳定根因和脚本入口
 - 工作区详细规则见 `E:\CodeXData\MyExcel\AGENTS.md`
 
-## 记忆状态
+## 历史生成器入口（2026-10-16整理）
+
+- 已交付工具为 `dist/组件材料配置表生成器_控制台版.exe`，说明为根目录 `组件材料配置表生成器_使用说明.md`。旧GUI曾因tkinter失败。对话 `019e2a16-49a8-7be0-8d98-f63eda70faab` 记录47张表、506条明细的历史验证，使用前核对文件与版本。
+- `generate_technical_params.py` 曾修复Word编号被XML文本节点拆行：同一段落内文本直接拼接，不额外插换行。来源 `019e3068-cfa9-72d0-85d9-9062cbfd42a2`，本次仅整理，未重新生成业务文档。
+
+## 记忆状态说明
 
 `E:\CodeXData\agentMemory\MyExcel` 当前可作为未来项目记忆路径，但未把业务文件正文或敏感字段作为记忆来源；若启用 MCP，只写经过脱敏的可复用方法。

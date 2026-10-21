@@ -1,6 +1,6 @@
 schema_version: 1
 format: flat-project-registry-v1
-updated: 2026-07-29
+updated: 2026-09-08
 
 contract:
   canonical_id: project_id
@@ -19,6 +19,7 @@ contract:
     - agentmemory_status
     - codegraph_status
     - verification_status
+    - last_capability_review
   enums:
     lifecycle: [active, maintenance, dormant, archived, legacy-only]
     knowledge_tier: [full, bridge, registry-only]
@@ -36,6 +37,8 @@ policies:
   durable_knowledge_source: cxmvault-project-page
   reusable_memory_source: project-agentmemory
   legacy_source: provenance-only
+  capability_status: current-local-check-only
+  capability_review_rule: agentmemory_status and codegraph_status describe their separately observed local capability; last_capability_review records that observation and does not establish current runtime configuration or business verification
   browser_auth: registered-test-harness-first
   nacos:
     authority: remote-current
@@ -54,6 +57,7 @@ frontmatter_mirror:
   - agentmemory_status
   - codegraph_status
   - verification_status
+  - last_capability_review
   - last_verified
 
 projects:
@@ -77,10 +81,11 @@ projects:
     agentmemory_service: agentmemory_sinopecnode_api
     agentmemory_path: 'E:\CodeXData\agentMemory\SinopecNode_api'
     agentmemory_status: verified
-    codegraph_status: unknown
+    codegraph_status: verified
     database_mcp: sinopecnode_dev_mysql
     database_access: controlled
     verification_status: verified
+    last_capability_review: 2026-09-08
     last_verified: 2026-08-19
 
   - project_id: SteelTechnologyNode_api
@@ -99,10 +104,11 @@ projects:
     agentmemory_service: agentmemory_steeltechnologynode_api
     agentmemory_path: 'E:\CodeXData\agentMemory\SteelTechnologyNode_api'
     agentmemory_status: verified
-    codegraph_status: unknown
+    codegraph_status: verified
     database_mcp: steelnode_dev_mysql
     database_access: controlled
     verification_status: verified
+    last_capability_review: 2026-09-08
     last_verified: 2026-07-29
 
   - project_id: MyExcel
@@ -118,13 +124,14 @@ projects:
     config_authority: project-files
     config_locator_ref: wiki/projects/MyExcel.md
     config_write_policy: project-files-only
-    agentmemory_service: null
+    agentmemory_service: agentmemory_myexcel
     agentmemory_path: 'E:\CodeXData\agentMemory\MyExcel'
-    agentmemory_status: available
+    agentmemory_status: verified
     codegraph_status: not-applicable
     database_mcp: null
     database_access: none
     verification_status: verified
+    last_capability_review: 2026-09-08
     last_verified: 2026-07-29
 
   - project_id: CRRC_API
@@ -147,6 +154,7 @@ projects:
     database_mcp: crrc_test_mysql
     database_access: read-only
     verification_status: verified
+    last_capability_review: 2026-09-08
     last_verified: 2026-07-29
 
   - project_id: CRRC_VUE_Index
@@ -169,6 +177,7 @@ projects:
     database_mcp: null
     database_access: none
     verification_status: verified
+    last_capability_review: 2026-09-08
     last_verified: 2026-07-29
 
   - project_id: CRRC_VUE_admin
@@ -191,6 +200,7 @@ projects:
     database_mcp: null
     database_access: none
     verification_status: verified
+    last_capability_review: 2026-09-08
     last_verified: 2026-07-29
 
   - project_id: matdao_api
@@ -208,9 +218,10 @@ projects:
     config_write_policy: explicit-user-request-only
     agentmemory_service: agentmemory_matdao_api
     agentmemory_path: 'E:\CodeXData\agentMemory\matdao_api'
-    agentmemory_status: configured
-    codegraph_status: unknown
+    agentmemory_status: verified
+    codegraph_status: verified
     database_mcp: null
     database_access: unknown
     verification_status: needs-review
+    last_capability_review: 2026-09-08
     last_verified: null

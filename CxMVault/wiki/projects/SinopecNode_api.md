@@ -2,15 +2,16 @@
 type: project
 status: active
 created: 2026-07-23
-updated: 2026-08-19
+updated: 2026-09-08
 project_id: SinopecNode_api
 project_lifecycle: active
 knowledge_tier: full
 config_source: repository
 config_authority: project-files
 agentmemory_status: verified
-codegraph_status: unknown
+codegraph_status: verified
 verification_status: verified
+last_capability_review: 2026-09-08
 last_verified: 2026-08-19
 source_refs:
   - E:\CodeXData\SinopecNode_api\AGENTS.md

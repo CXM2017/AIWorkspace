@@ -2,7 +2,7 @@
 type: maintenance-log
 status: active
 created: 2026-07-02
-updated: 2026-08-13
+updated: 2026-10-16
 source_refs:
   - tools/Initialize-CxMVault.ps1
   - tools/Test-CxMVault.ps1
@@ -13,6 +13,26 @@ tags:
 ---
 
 # 维护日志
+
+## [2026-10-16] conversation-delete-and-triage | 永久删除与重复待办收口
+
+- 经本机协议与官方文档核对，改用App Server `thread/delete`，实际删除10条无价值本地历史，逐条核对文件及状态移除；纠正此前“无法删除”的不完整判断
+- [[operations/2026-10-16历史待办收口]]集中四项当前复查入口；租户改造保持暂停，浏览器问题沿用置顶入口，旧开发/诊断任务归档并保留证据
+- 只读确认历史PDF运行已mark-sent且邮件存在SENT标签；残留pending文件不得触发重复发送，未修改邮件或自动化状态
+
+## [2026-10-16] conversation-distillation | 历史会话知识归位
+
+- 新增 [[operations/历史会话知识入口]]，按项目、产物和待办路由，不复制历史全文或敏感配置
+- 补充 [[operations/Codex工作台治理]] 的删除工具边界和磁盘压缩验证；MyExcel页补上控制台生成器与Word编号拆行根因
+- 操作清单及最终统计在 `D:\CodeX\conversations\2026-10-16\history-maintenance\`；本次只整理知识与对话，不实施暂停的租户迁移或自动补发历史邮件
+
+## [2026-09-08] knowledge-governance-refresh | 能力路由与历史任务复核
+
+- 新增 [[../reviews/weekly/2026-W37|2026-W37 周复盘]]，记录 CodeGraph、agentMemory、Obsidian 与任务历史的当前本地证据和未升级项
+- 16 个 `agentmemory_*` 服务均完成 MCP 初始化、工具发现与 `memory_stats` 只读探测；Registry 补回 MyExcel 服务名并更新 matdao_api 的状态
+- 已核验 9 个现有 CodeGraph 索引，安全同步 3 个已被 Git 忽略的索引；未初始化且未忽略索引目录的仓库保持 `needs-review`
+- 更新 [[operations/Codex工作台治理|Codex 工作台治理]] 与 [[operations/Obsidian配置迁移|Obsidian 配置迁移]]：区分能力可用性、业务验证与 UI 状态；归档前必须读取最终交付，年龄不再是唯一条件
+- 可恢复归档 1 条已完成 Codex 一次性任务；ChatGPT 对话归档受当前 API 范围限制，未用文件删除绕过
 
 ## [2026-07-29] agentmemory-mcp-path-normalization | 项目记忆 MCP 路径统一
 
@@ -217,6 +237,12 @@ tags:
 - 新增桌面入口：`C:\Users\CxM\Desktop\修复 ChatGPT Chrome 扩展.cmd`
 - `Register-CodexChromeNativeHostRepairTask.ps1` 改为可选的登录时一次检查；`-Mode Remove` 用于移除该任务
 - 默认策略：桌面端升级后仅在 Chrome 侧边栏报错时手动执行，避免无意义后台轮询
+
+## [2026-09-16] codex-chrome-extension-runtime-handshake | Chrome 运行时握手排查
+
+- Codex Desktop 更新至 `26.908.9136.0` 后，修复脚本已同步 bundled Chrome 插件 `26.908.70816` 并重建 Native Host 配置
+- 外部 Chrome 的扩展安装、启用、Native Host manifest 与 Chrome 进程检查均通过，但实际标签读取仍失败；内置浏览器正常
+- 新增 runbook 分支：先由插件脚本打开当前 Profile 的空白 Chrome 窗口触发握手；若仍失败，改从 ChatGPT/Codex 插件管理界面重新安装 Browser/Chrome 插件，不再手改 manifest
 
 ## [2026-07-16] crrc-api-onboarding | CRRC_API 项目初始化
 

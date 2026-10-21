@@ -2,7 +2,7 @@
 type: runbook
 status: active
 created: 2026-07-10
-updated: 2026-07-16
+updated: 2026-09-16
 source_refs:
   - D:\CodeX\conversations\chrome-extension-repair-20260710\repair.log
   - D:\CodeX\conversations\chrome-extension-repair-20260710\plugin-reinstall.log
@@ -11,6 +11,7 @@ source_refs:
   - D:\CodeX\maintenance\Register-CodexChromeNativeHostRepairTask.ps1
   - C:\Users\CxM\Desktop\修复 ChatGPT Chrome 扩展.cmd
   - D:\CodeX\logs\codex-chrome-native-host
+  - D:\CodeX\.codex\plugins\cache\openai-bundled\chrome\26.908.70816\scripts
 confidence: EXTRACTED
 tags:
   - codex
@@ -70,6 +71,26 @@ pwsh.exe -NoProfile -ExecutionPolicy Bypass -File 'D:\CodeX\maintenance\Register
 ```text
 D:\CodeX\logs\codex-chrome-native-host\repair-YYYYMMDD.log
 ```
+
+## 2026-09 更新后：静态检查通过但 Chrome 仍不可控
+
+若修复脚本已完成、下列静态检查均通过，却仍无法读取 Chrome 标签或控制页面，则不要再次手改 manifest、junction 或运行时路径。这说明 Native Host 配置已经正常，故障位于新版 Chrome 扩展与当前 Chrome 进程的运行时握手。
+
+已验证的特征：
+
+- ChatGPT/Codex Desktop `26.908.9136.0`，bundled Chrome 插件 `26.908.70816`
+- `check-extension-installed.js --browser chrome --json`：扩展已安装并启用
+- `check-native-host-manifest.js --browser chrome --json`：`correct: true`
+- Chrome 正在运行，但 `browser.user.openTabs()` 连续请求失败
+- Codex 内置浏览器可正常连接；问题只在外部 Chrome 扩展通道
+
+按新版插件的恢复顺序执行：
+
+1. 通过插件提供的 `open-chrome-window.js --browser chrome` 打开当前配置文件的空白窗口，等待两秒后复测
+2. 若实际控制通道仍失败，从 ChatGPT/Codex 的插件管理界面重新安装 Browser/Chrome 插件，再重新打开 Chrome
+3. 仅在静态检查失败时才运行桌面一键修复脚本
+
+不要用旧版本目录、手写 JSON 或重装 Chrome 来处理此分支；它们无法修复扩展运行时握手。
 
 ## 快速判断
 

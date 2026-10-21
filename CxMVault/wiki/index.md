@@ -2,7 +2,7 @@
 type: wiki-index
 status: active
 created: 2026-07-02
-updated: 2026-08-12
+updated: 2026-10-16
 source_refs:
   - wiki/overview.md
 confidence: EXTRACTED
@@ -32,6 +32,7 @@ tags:
 - [[../reviews/weekly/2026-W29|2026-W29 周复盘]]
 - [[../reviews/weekly/2026-W30|2026-W30 周复盘]]
 - [[../reviews/weekly/2026-W33|2026-W33 周复盘]]
+- [[../reviews/weekly/2026-W37|2026-W37 周复盘]]
 - [[../reviews/monthly/2026-07|2026-07 月复盘]]
 
 ## 治理入口
@@ -57,6 +58,8 @@ tags:
 
 - [[operations/采集消化复盘SOP|采集消化复盘 SOP]]
 - [[operations/Codex工作台治理|Codex 工作台治理]]
+- [[operations/历史会话知识入口|历史会话知识入口与待办]]
+- [[operations/2026-10-16历史待办收口|历史待办收口与当前复查入口]]
 - [[operations/WebClipper剪藏分诊SOP|Web Clipper 剪藏分诊 SOP]]
 - [[operations/自动化维护流程|自动化维护流程]]
 - [[operations/CxMVault链接关系体检|CxMVault 链接关系体检]]

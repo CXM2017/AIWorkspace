@@ -2,15 +2,16 @@
 type: project
 status: active
 created: 2026-07-02
-updated: 2026-07-29
+updated: 2026-09-08
 project_id: matdao_api
 project_lifecycle: active
 knowledge_tier: bridge
 config_source: nacos
 config_authority: remote-current
-agentmemory_status: configured
-codegraph_status: unknown
+agentmemory_status: verified
+codegraph_status: verified
 verification_status: needs-review
+last_capability_review: 2026-09-08
 last_verified: null
 source_refs:
   - E:\CodeXData\CodeXKnowledge\10-projects\matdao_api

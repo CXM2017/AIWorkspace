@@ -2,7 +2,7 @@
 type: operation
 status: active
 created: 2026-07-29
-updated: 2026-08-13
+updated: 2026-10-16
 source_refs:
   - schema/projects.yaml
   - schema/AGENTS.md
@@ -50,6 +50,15 @@ tags:
 - 项目记忆优先使用 Registry 映射的 `agentmemory_*`；数据库 MCP 默认按登记权限使用
 - 插件、MCP、Skill 的重复项以“能力是否等价、是否仍有项目依赖、最后成功验证时间”判断，不按目录名直接删除
 
+## 能力状态刷新
+
+Registry 的 `agentmemory_status` 和 `codegraph_status` 只说明对应**本地能力**在 `last_capability_review` 当日是否可用；它们不证明构建、接口、数据库或远端 Nacos 当前正常，后者仍按项目验证状态和事实源处理。
+
+1. CodeGraph：先执行 `codegraph status <项目路径>`；只有索引目录已被忽略且已记录 `git status` 时，才对有 pending change 的项目执行 `codegraph sync`。未初始化且 `.codegraph/` 未被忽略时标记 `needs-review`，不通过改 `.gitignore` 或初始化来掩盖现有工作区状态。
+2. agentMemory：检查 Registry 服务名与数据目录，并以一次 MCP `initialize`、`tools/list` 和 `memory_stats` 只读调用核验可达性；目录 mtime 不能代替内容时效，也不因服务可用而重写项目记忆。
+3. Vault/Obsidian：先运行 `Test-CxMVault.ps1 -NoWrite`；插件以 `.obsidian/community-plugins.json` 和各 `manifest.json` 为准，workspace、recent files 和插件标签页只属于 UI 状态，不作为知识事实或迁移对象。
+4. 已配置但未登记的项目记忆服务保留为 legacy/伴随工作区能力；只有明确长期维护价值、路径和项目页后才进入 Registry，避免把历史目录伪装成活跃项目。
+
 ## Nacos 项目
 
 - 远端当前 namespace/group/dataId 是运行事实源
@@ -72,7 +81,7 @@ tags:
 默认在每周整理时处理超过 7 个自然日的任务；用户指定更短或更长的保留期时以用户要求为准。每条待归档任务必须同时满足：
 
 1. 非当前任务、非置顶，且不包含“继续处理”、待用户输入、待发送、待复查或失败状态
-2. 最后一轮为 `completed`，并存在最终交付或可核对的完成结论
+2. 通过 `read_thread` 确认最后一轮已有最终交付或可核对的完成结论；列表中的 `idle`、`notLoaded` 仅用于筛选，不是完成证据
 3. 可复用结论已经落到下表规定的载体，或确认为一次性内容
 
 `interrupted` 不等于已完成；即使任务较旧也保留，待下次运行成功闭环后再归档。归档后重新盘点任务列表，确认仅归档目标任务；归档可恢复，不删除 session 文件、内部数据库或自动化状态。
@@ -122,7 +131,15 @@ tags:
 4. 隔离期后仍要永久删除时，必须再次确认精确目标
 5. 每次清理记录前后数量、大小、路径、恢复方式和验证结果
 
-## 收尾
+## 2026-10-16 会话整理与占用实测
+
+- 知识恢复入口见 [[历史会话知识入口]]；逐条决策在 `D:\CodeX\conversations\2026-10-16\history-maintenance\decisions.json`。`notLoaded`不是完成证据；ChatGPT末轮可能只有内容引用或附件，正文不可见时不能猜测删除价值。
+- 桌面MCP未暴露永久删除工具，但本机官方App Server已支持`thread/delete`。先从当前CLI生成协议并核对官方文档；删除会递归影响派生子线程，必须逐项审查完整子树、当前/置顶与长期知识承接。用户已授权的无价值历史可用正式接口删除，随后核对rollout与元数据均已移除；不手删session或直接写内部数据库模拟删除。本轮初次检查遗漏App Server，第二轮已纠正。
+- 已归档对话直接改名若返回 `no rollout found`，可用官方工具临时恢复、改名、立即重新归档；逐项验证归档状态，不手改数据库。本次10条采用此路径成功。
+- 归档不等于释放磁盘。旧历史大多已Zstandard压缩，再压缩没有实际收益。普通JSONL可按精确文件做NTFS透明压缩，保持路径和内容，前后核对SHA-256与应用读取。保护当前和置顶文件，不对目录设继承压缩，不动运行数据库/WAL。
+- 现有Skill已覆盖路由、诊断、预检、清理及结构保持，不重复创建。用户授权新增短小项目记忆，历史聊天及敏感配置不复制。
+
+## 收尾检查
 
 - 业务修改按风险运行最小验证
 - 新的稳定根因、启动/联调流程或重大配置事故进入项目页，并评估是否更新 Skill

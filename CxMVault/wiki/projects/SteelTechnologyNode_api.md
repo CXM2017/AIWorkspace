@@ -2,15 +2,16 @@
 type: project
 status: active
 created: 2026-07-02
-updated: 2026-07-29
+updated: 2026-09-08
 project_id: SteelTechnologyNode_api
 project_lifecycle: active
 knowledge_tier: full
 config_source: nacos
 config_authority: remote-current
 agentmemory_status: verified
-codegraph_status: unknown
+codegraph_status: verified
 verification_status: verified
+last_capability_review: 2026-09-08
 last_verified: 2026-07-29
 source_refs:
   - E:\CodeXData\SteelTechnologyNode_api\AGENTS.md
